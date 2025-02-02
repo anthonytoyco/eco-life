@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Eco-Life - Contact</title>
+</head>
+
+<body>
+  <header>
+    <h1>Eco-Life</h1>
+    <nav>
+      <a href="index.html">Home</a> &nbsp;
+      <a href="about.html">About</a> &nbsp;
+      <a href="ecotracker.html">Eco Tracker</a> &nbsp;
+      <a href="challenges.html">Challenges</a> &nbsp;
+      <a href="achievements.html">Achievements</a> &nbsp;
+      <a href="leaderboard.html">Leaderboard</a> &nbsp;
+      <a href="profile.html">Profile</a> &nbsp;
+      <a href="contact.html">Contact</a> &nbsp;
+    </nav>
+    <br>
+  </header>
+
+  <main>
+
+    <div id="contact-hero">
+      <img src="assests/contact-hero.jpg" alt="Mailboxes surrounded by greenery" width="700" height="500">
+    </div>
+
+    <section id="contact-us">
+      <h2>Contact Us</h2>
+      <p>Have questions about Eco-Life? Feel free to send the team through the form below.<br>
+        You can also contact us through our emails or using the form below. </p>
+    </section>
+
+    <section id="contact-message-form">
+      <h2>Send Us A Message</h2>
+      <form id="messageForm">
+        <p>
+          <label for="messenger-name">Your Name:</label>
+          <input type="text" id="messenger-name" name="messenger-name" placeholder="John Doe" required>
+        </p>
+        <p>
+          <label for="messenger-email">Your Email:</label>
+          <input type="email" id="messenger-email" name="messenger-email" placeholder="john_doe@gmail.com" required>
+        </p>
+        <p>
+          <label for="messenger-tel">Your Phone Number:</label>
+          <input type="tel" id="messenger-tel" name="messenger-tel" placeholder="1234567890" pattern="^\d{10}$"
+            required>
+        </p>
+        <p>
+          <label for="messenger-message">Your Message:</label>
+          <textarea id="messenger-message" name="messenger-message" rows="4" placeholder="Good job!"
+            required></textarea>
+        </p>
+        <input type="submit" value="Send Message">
+      </form>
+      <p id="statusMessage"></p>
+    </section>
+    <script src="messageForm.js"></script> <!--TODO-->
+
+    <section id="contact-dev-members">
+      <h2>The Development Team</h2>
+
+      <div id="contact-dev-anthony">
+        <h3>Anthony Toyco</h3>
+        <img alt="Anthony Toyco's GitHub Profile Picture" src="https://avatars.githubusercontent.com/u/86866490"
+          width="250">
+        <address>
+          <p>
+            YorkU Email:
+            <a href="mailto:toycoa@my.yorku.ca">toycoa@my.yorku.ca</a><br>
+            GitHub Profile:
+            <a href="https://github.com/anthonytoyco">github.com/anthonytoyco</a><br>
+          </p>
+        </address>
+      </div>
+
+      <div id="contact-dev-draven">
+        <h3>Draven Ng</h3>
+        <img alt="Draven Ng's GitHub Profile Picture" src="https://avatars.githubusercontent.com/u/92891250"
+          width="250">
+        <address>
+          <p>
+            YorkU Email:
+            <a href="mailto:dbibi@my.yorku.ca">dbibi@my.yorku.ca</a><br>
+            GitHub Profile:
+            <a href="https://github.com/xDbibix">github.com/xDbibix</a><br>
+          </p>
+        </address>
+      </div>
+
+      <div id="contact-dev-felex">
+        <h3>Felex Hill</h3>
+        <img alt="Felex Hill's GitHub Profile Picture" src="https://avatars.githubusercontent.com/u/146500839"
+          width="250">
+        <address>
+          <p>
+            YorkU Email:
+            <a href="mailto:fhill7@my.yorku.ca">fhill7@my.yorku.ca</a><br>
+            GitHub Profile:
+            <a href="https://github.com/FelexHill7">github.com/FelexHill7</a><br>
+          </p>
+        </address>
+      </div>
+    </section>
+
+    <section id="contact-university">
+      <h2>Our University</h2>
+      <address>
+        York University Markham Campus<br>
+        1 University Blvd.<br>
+        Markham, ON L6G 0A1
+      </address>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2877.0694116561913!2d-79.31408492289516!3d43.854389971093184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4d53d28a8b727%3A0xfd7024bab5e7bbfe!2sYork%20University%20Markham%20Campus!5e0!3m2!1sen!2sca!4v1738482821392!5m2!1sen!2sca"
+        width="500" height="500" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Image credits:
+      <cite><a href="https://unsplash.com/photos/six-assorted-color-mail-boxes-fb7yNPbT0l8">
+          Six assorted-color mail boxes</a></cite> by <a href="https://unsplash.com/@mathyaskurmann"
+        target="_blank">Mathyas Kurmann</a> from Unsplash.
+    </p>
+    <p>&copy; 2025 Eco-Life</p>
+  </footer>
+
+</body>
+
+</html>
