@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eco-Life Achievements</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        img {
+            width: 50px;
+            height: auto;
+        }
+    </style>
 </head>
 
 <header>
@@ -21,8 +39,8 @@
     </nav>
     <br>
   </header>
-  
-<body>
+
+  <body>
     <header>
         <h1>🏆 Eco-Life Achievements</h1>
         <p>Track your sustainability milestones and progress.</p>
@@ -30,18 +48,24 @@
     
     <section id="achievements">
         <h2>Your Achievements</h2>
-        <div>
-            <img src="badge1.png" alt="First Eco Step">
-            <p>First Eco Step - Logged your first sustainable action</p>
-        </div>
-        <div class="achievement">
-            <img src="badge2.png" alt="One Week Streak">
-            <p>One Week Streak - Completed eco-friendly tasks for 7 days straight</p>
-        </div>
-        <div class="achievement">
-            <img src="badge3.png" alt="CO₂ Saver">
-            <p>CO₂ Saver - Reduced 10kg of CO₂ emissions</p>
-        </div>
+        <table>
+            <tr>
+                <th>Badge</th>
+                <th>Achievement</th>
+            </tr>
+            <tr>
+                <td><img src="assests/badge1.jpg" alt="First Eco Step"></td>
+                <td>First Eco Step - Logged your first sustainable action</td>
+            </tr>
+            <tr>
+                <td><img src="assests/badge2.png" alt="First log in"></td>
+                <td>Welcome! - Logged in for the first time</td>
+            </tr>
+            <tr>
+                <td><img src="assests/badge3.png" alt="CO₂ Saver"></td>
+                <td>CO₂ Saver - Reduced 10kg of CO₂ emissions</td>
+            </tr>
+        </table>
     </section>
     
     <section id="progress">
