@@ -23,12 +23,61 @@
   </header>
 
   <main>
-
     <div id="ecotracker-hero">
-      <img src="assests/ecotracker-hero.jpg" alt="Books piled on brown wooden bookshelf" width="700" height="500">
+      <img src="assets/ecotracker-hero.jpg" alt="Books piled on brown wooden bookshelf" width="700" height="500">
     </div>
 
-    <!-- START BELOW -->
+    <section id="ecotracker-intro">
+      <h2>Track Your Sustainable Actions</h2>
+      <p>Log your daily eco-friendly activities and see your impact grow over time.
+      </p>
+    </section>
+
+    <section id="ecotracker-log-form">
+      <h2>Log An Eco Action</h2>
+      <form id="ecoForm">
+        <p>
+          <label for="log-action">Select an Action:</label><br>
+          <select id="log-action" name="log-action" required>
+            <option value="">-- Choose an action --</option>
+            <option value="reusable_bottle">Used a reusable water bottle</option>
+            <option value="public_transport">Took public transport or biked</option>
+            <option value="reduced_food_waste">Reduced food waste</option>
+            <option value="planted_tree">Planted a tree</option>
+          </select>
+        </p>
+        <p>
+          <label for="log-date">Date:</label><br>
+          <input type="date" id="log-date" name="log-date" required>
+        </p>
+        <input type="submit" value="Log Action">
+      </form>
+    </section>
+
+    <section id="eco-summary-table">
+      <h2>Weekly Eco-Action Summary</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Action</th>
+            <th>Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2025-02-01</td>
+            <td>Used a reusable water bottle</td>
+            <td>Saved 0.5kg of plastic waste</td>
+          </tr>
+          <tr>
+            <td>2025-02-02</td>
+            <td>Took public transport</td>
+            <td>Reduced CO₂ emissions by 2kg</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
   </main>
 
@@ -39,7 +88,6 @@
     by <a href="https://unsplash.com/@hitoshi_suzuki" target="_blank">Hitoshi Suzuki</a> from Unsplash.
     <p>&copy; 2025 Eco-Life</p>
   </footer>
-
 </body>
 
 </html>

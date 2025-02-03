@@ -1,24 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Eco-Life Challenges</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-    </style>
 
-<header>
+<head>
+  <meta charset="UTF-8">
+  <title>Eco-Life - Challenges</title>
+</head>
+
+<body>
+  <header>
     <h1>Eco-Life</h1>
     <nav>
       <a href="index.html">Home</a> &nbsp;
@@ -33,45 +22,62 @@
     <br>
   </header>
 
-</head>
-<body>
-    <header>
-        <h1>🏆 Eco-Life Challenges</h1>
-        <p>Track your sustainability milestones and progress.</p>
-    </header>
-    
-    <section id="challenges">
-        <h2>Challenges</h2>
-        <table>
-            <tr>
-                <th>Challenge</th>
-                <th>Status</th>
-                <th>Reward</th>
-            </tr>
-            <tr>
-                <td>Log in for the first time</td>
-                <td>✅ Completed</td>
-                <td>+50 Points</td>
-            </tr>
-            <tr>
-                <td>Cycle Instead of Driving</td>
-                <td>🕒 In Progress</td>
-                <td>+30 Points</td>
-            </tr>
-            <tr>
-                <td>Plant a Tree</td>
-                <td>❌ Not Started</td>
-                <td>+100 Points</td>
-            </tr>
-        </table>
+  <main>
+    <div id="challenges-hero">
+      <img src="assets/challenges-hero.jpg" alt="Close-up of a tree sapling" width="700" height="500">
+    </div>
+
+    <section id="challenges-intro">
+      <h2>Eco Challenges</h2>
+      <p>Take on daily, weekly, and monthly challenges to boost your eco-impact. Complete tasks, earn points, and
+        compete with friends.</p>
     </section>
-    
+
+    <section id="challenges-table">
+      <h2>Current Challenges</h2>
+      <table>
+        <tr>
+          <th>Challenge</th>
+          <th>Status</th>
+          <th>Reward</th>
+          <th>Date Achieved</th>
+        </tr>
+        <tr>
+          <td>Buy a Reusable Water Bottle</td>
+          <td>✅ Completed</td>
+          <td>+50 Points</td>
+          <td>December 4, 2024</td>
+        </tr>
+        <tr>
+          <td>Cycle Instead of Driving</td>
+          <td>🕒 In Progress</td>
+          <td>+30 Points</td>
+          <td>January 8, 2025</td>
+        </tr>
+        <tr>
+          <td>Plant a Tree</td>
+          <td>❌ Not Started</td>
+          <td>+100 Points</td>
+          <td>N/A</td>
+        </tr>
+      </table>
+    </section>
+
     <section id="progress">
-        <h2>Progress</h2>
-        <p>Current Streak: <span id="streak">5 days</span></p>
-        <p>Total Points: <span id="points">250</span></p>
+      <h2>Progress</h2>
+      <p>Current Streak: <strong id="streak">5 days</strong></p>
+      <p>Total Points: <strong id="points">250</strong></p>
     </section>
-    
-    <p>&copy; 2025 Eco-Life</p>
+  </main>
+
+  <footer>
+    <p>Image credits:</p>
+    <cite><a href="https://unsplash.com/photos/green-plant-on-green-grass-during-daytime-YtqUWAlL2GE">Green plant on
+        green grass during daytime
+      </a></cite> by <a href="https://unsplash.com/@aiokr" target="_blank">Aiokr Chen</a> from Unsplash.<p>
+      &copy; 2025 Eco-Life</p>
+  </footer>
+
 </body>
+
 </html>
