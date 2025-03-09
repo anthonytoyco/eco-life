@@ -16,15 +16,15 @@
       <a href="challenges.html">Challenges</a> &nbsp;
       <a href="achievements.html">Achievements</a> &nbsp;
       <a href="leaderboard.html">Leaderboard</a> &nbsp;
-      <a href="profile.html">Profile</a> &nbsp;
       <a href="contact.html">Contact</a> &nbsp;
+      <a href="profile.html">Profile</a> &nbsp;
     </nav>
     <br>
   </header>
 
   <main>
     <div id="contact-hero">
-      <img src="assets/contact-hero.jpg" alt="Mailboxes surrounded by greenery" width="700" height="500">
+      <img src="assets/images/heros/contact-hero.jpg" alt="Mailboxes surrounded by greenery" width="700" height="500">
     </div>
 
     <section id="contact-us">
@@ -33,32 +33,28 @@
         You can also contact us through our emails or using the form below. </p>
     </section>
 
-    <section id="contact-message-form">
+    <section id="contact-message-section">
       <h2>Send Us A Message</h2>
-      <form id="messageForm">
+      <form id="message-form">
         <p>
-          <label for="messenger-name">Your Name:</label><br>
-          <input type="text" id="messenger-name" name="messenger-name" placeholder="John Doe" required>
+          <label id="name-label" for="name-input">Your Name:</label><br>
+          <input id="name-input" name="message-name" type="text" placeholder="John Doe" required>
         </p>
         <p>
-          <label for="messenger-email">Your Email:</label><br>
-          <input type="email" id="messenger-email" name="messenger-email" placeholder="john_doe@gmail.com" required>
+          <label id="email-label" for="email-input">Your Email:</label><br>
+          <input id="email-input" name="message-email" type="email" placeholder="john_doe@gmail.com" required>
         </p>
         <p>
-          <label for="messenger-tel">Your Phone Number:</label><br>
-          <input type="tel" id="messenger-tel" name="messenger-tel" placeholder="1234567890" pattern="^\d{10}$"
-            required>
+          <label id="tel-label" for="tel-input">Your Phone Number:</label><br>
+          <input id="tel-input" name="message-tel" type="tel" placeholder="1234567890" pattern="^\d{10}$" required>
         </p>
         <p>
-          <label for="messenger-message">Your Message:</label><br>
-          <textarea id="messenger-message" name="messenger-message" rows="4" placeholder="Good job!"
-            required></textarea>
+          <label id="body-label" for="body-input">Your Message:</label><br>
+          <textarea id="body-input" name="message-body" rows="4" placeholder="Good job!" required></textarea>
         </p>
         <input type="submit" value="Send Message">
       </form>
-      <p id="statusMessage"></p>
     </section>
-    <script src="messageForm.js"></script> <!--TODO-->
 
     <section id="contact-dev-members">
       <h2>The Development Team</h2>
