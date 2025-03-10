@@ -3,23 +3,34 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Eco-Life - Achievements</title>
+  <link href="css/main.css" rel="stylesheet">
 </head>
 
 <body>
   <header>
-    <h1>Eco-Life</h1>
-    <nav>
-      <a href="index.html">Home</a> &nbsp;
-      <a href="about.html">About</a> &nbsp;
-      <a href="ecotracker.html">Eco Tracker</a> &nbsp;
-      <a href="challenges.html">Challenges</a> &nbsp;
-      <a href="achievements.html">Achievements</a> &nbsp;
-      <a href="leaderboard.html">Leaderboard</a> &nbsp;
-      <a href="contact.html">Contact</a> &nbsp;
-      <a href="profile.html">Profile</a> &nbsp;
-    </nav>
-    <br>
+    <input id="menu-toggle" type="checkbox">
+    <label id="menu-button" class="header-buttons" for="menu-toggle">
+      <img id="menu-img" src="assets/icons/header-menu-icon.png" alt="Menu button" width="50px" height="50px">
+    </label>
+    <h1 id="title">Eco-Life</h1>
+    <div id="menu-container">
+      <nav id="menu">
+        <a href="index.html"><span>Home</span></a> &nbsp;
+        <a href="about.html"><span>About</span></a> &nbsp;
+        <a href="ecotracker.html"><span>Eco Tracker</span></a> &nbsp;
+        <a href="challenges.html"><span>Challenges</span></a> &nbsp;
+        <a href="achievements.html"><span>Achievements</span></a> &nbsp;
+        <a href="leaderboard.html"><span>Leaderboard</span></a> &nbsp;
+        <a href="contact.html"><span>Contact</span></a> &nbsp;
+        <a href="profile.html"><span>Profile</span></a> &nbsp;
+      </nav>
+    </div>
+    <p id="greeting"><i>Hello, FIRST LAST</i></p>
+    <a id="profile-button" class="header-buttons" href="profile.html">
+      <img id="profile-img" src="assets/icons/header-profile-icon.png" alt="Profile button" width="35px" height="35px">
+    </a>
   </header>
 
   <main>
