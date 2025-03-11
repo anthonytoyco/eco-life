@@ -6,15 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Eco-Life - Home</title>
   <link href="css/main.css" rel="stylesheet">
+  <link href="css/header.css" rel="stylesheet">
+  <link href="css/footer.css" rel="stylesheet">
 </head>
 
 <body>
   <header>
     <input id="menu-toggle" type="checkbox">
     <label id="menu-button" class="header-buttons" for="menu-toggle">
-      <img id="menu-img" src="assets/icons/header-menu-icon.png" alt="Menu button" width="50" height="50">
+      <img id="menu-img" src="assets/icons/menu-icon.png" alt="Menu button" width="50" height="50">
     </label>
-    <h1 id="title">Eco-Life</h1>
+    <h1 id="header-title">ECO-LIFE</h1>
     <div id="menu-container">
       <nav id="menu">
         <a href="index.html"><span>Home</span></a> &nbsp;
@@ -29,21 +31,21 @@
     </div>
     <p id="greeting"><i>Hello, FIRST LAST</i></p>
     <a id="profile-button" class="header-buttons" href="profile.html">
-      <img id="profile-img" src="assets/icons/header-profile-icon.png" alt="Profile button" width="35" height="35">
+      <img id="profile-img" src="assets/icons/profile-icon.png" alt="Profile button" width="35" height="35">
     </a>
   </header>
 
   <main>
-    <div id="index-hero">
-      <img src="assets/images/heros/index-hero.jpg" alt="Hands holding green plant sapling" width="700" height="500">
-    </div>
-
     <section id="index-welcome">
-      <h2>Welcome to Eco-Life &mdash; Your Journey to a Greener Future</h2>
+      <h2>Eco-Life, <br> Your Journey to a Greener Future.</h2>
+      <div id="index-hero">
+        <img src="assets/images/heros/index-hero.jpg" alt="Hands holding green plant sapling" width="700" height="500">
+      </div>
       <h3>Sustainability Starts With You</h3>
       <p>Turn small lifestyle changes into a big impact for the planet<br>Start your eco-journey today</p>
       <a href="ecotracker.html">Start Eco Tracking</a>
     </section>
+
 
     <section id="index-overview">
       <h2>What is Eco-Life?</h2>
@@ -76,20 +78,47 @@
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
-    <p>Image credits: <cite><a href="https://unsplash.com/photos/green-plant-x8ZStukS2PM">The Earth and I</a></cite> by
-      <a href="https://unsplash.com/@noahbuscher" target="_blank">Noah Buscher</a> from Unsplash.
-    </p>
-    <p> Icons made by <a href="https://www.flaticon.com/authors/febrian-hidayat">Febrian Hidayat</a>, <a
-        href="https://www.freepik.com" title="Freepik"> Freepik </a> from
-      Flaticon.
-    </p>
-    <p>&copy; 2025 Eco-Life</p>
-  </footer>
+    <div id="updates">
+      <form id="updates-form">
+        <label id="updates-label" for="updates-email">Stay Updated</label><br>
+        <div id="updates-inputs">
+          <input id="updates-email" name="updates-email" type="email" placeholder="Email" required>
+          <input id="updates-submit" name="updates-submit" type="submit" value="SUBSCRIBE">
+        </div>
+      </form>
+      <a id="github-link" href="https://github.com/anthonytoyco/eco-life">
+        <img id="github-img" src="assets/icons/github-icon.png" alt="GitHub button" width="35" height="35">
+        <span>Visit the GitHub Repository</span>
+      </a>
+    </div>
 
+    <div id="credits">
+      <p>Image Credits</p>
+      <ul>
+        <li>
+          <p>
+            <cite><a href="https://unsplash.com/photos/green-plant-x8ZStukS2PM">The Earth and I</a></cite>
+            by <a href="https://unsplash.com/@noahbuscher" target="_blank">Noah Buscher</a> from Unsplash.
+          </p>
+        </li>
+      </ul>
+      <p>Icon Credits</p>
+      <ul>
+        <li>
+          <a href="https://www.flaticon.com/authors/febrian-hidayat">Febrian Hidayat</a> and <a
+            href="https://www.freepik.com" title="Freepik">Freepik</a> from Flaticon.
+        </li>
+      </ul>
+    </div>
+
+    <div id="logo">
+      <img id="logo-img" src="assets/icons/logo-light-icon.png" alt="Eco-life logo" width="70" height="70">
+      <p id="copyright">&copy; 2025 Eco-Life</p>
+    </div>
+  </footer>
 </body>
 
 </html>

@@ -6,15 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Eco-Life - Profile</title>
   <link href="css/main.css" rel="stylesheet">
+  <link href="css/header.css" rel="stylesheet">
+  <link href="css/footer.css" rel="stylesheet">
 </head>
 
 <body>
   <header>
     <input id="menu-toggle" type="checkbox">
     <label id="menu-button" class="header-buttons" for="menu-toggle">
-      <img id="menu-img" src="assets/icons/header-menu-icon.png" alt="Menu button" width="50" height="50">
+      <img id="menu-img" src="assets/icons/menu-icon.png" alt="Menu button" width="50" height="50">
     </label>
-    <h1 id="title">Eco-Life</h1>
+    <h1 id="header-title">ECO-LIFE</h1>
     <div id="menu-container">
       <nav id="menu">
         <a href="index.html"><span>Home</span></a> &nbsp;
@@ -29,7 +31,7 @@
     </div>
     <p id="greeting"><i>Hello, FIRST LAST</i></p>
     <a id="profile-button" class="header-buttons" href="profile.html">
-      <img id="profile-img" src="assets/icons/header-profile-icon.png" alt="Profile button" width="35" height="35">
+      <img id="profile-img" src="assets/icons/profile-icon.png" alt="Profile button" width="35" height="35">
     </a>
   </header>
 
@@ -62,7 +64,46 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 Eco-Life</p>
+    <div id="updates">
+      <form id="updates-form">
+        <label id="updates-label" for="updates-email">Stay Updated</label><br>
+        <div id="updates-inputs">
+          <input id="updates-email" name="updates-email" type="email" placeholder="Email" required>
+          <input id="updates-submit" name="updates-submit" type="submit" value="SUBSCRIBE">
+        </div>
+      </form>
+      <a id="github-link" href="https://github.com/anthonytoyco/eco-life">
+        <img id="github-img" src="assets/icons/github-icon.png" alt="GitHub button" width="35" height="35">
+        <span>Visit the GitHub Repository</span>
+      </a>
+    </div>
+
+    <div id="credits">
+      <p>Image Credits</p>
+      <ul>
+        <li>
+          <p>
+            <cite><a
+                href="https://www.freepik.com/premium-photo/tree-field-with-sun-shining-through-clouds_173717095.htm">A
+                tree in a field with the sun shining through the clouds</a></cite> by <a
+              href="https://www.freepik.com/author/bydigitaltreasures" target="_blank">ByDigitalTreasures</a> from
+            Freepik.
+          </p>
+        </li>
+      </ul>
+      <p>Icon Credits</p>
+      <ul>
+        <li>
+          <a href="https://www.flaticon.com/authors/febrian-hidayat">Febrian Hidayat</a> and <a
+            href="https://www.freepik.com" title="Freepik">Freepik</a> from Flaticon.
+        </li>
+      </ul>
+    </div>
+
+    <div id="logo">
+      <img id="logo-img" src="assets/icons/logo-light-icon.png" alt="Eco-life logo" width="70" height="70">
+      <p id="copyright">&copy; 2025 Eco-Life</p>
+    </div>
   </footer>
 </body>
 

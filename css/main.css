@@ -1,6 +1,8 @@
 /* Imports fonts from Google Fonts (Inter, Playfair Display */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
+/* GLOBAL */
+
 :root {
   /* Fonts */
   --font-family-inter: "Inter", "Arial", sans-serif;
@@ -12,7 +14,6 @@
   --color-accent: #a1a08f;
 }
 
-/* GLOBAL */
 html {
   background-color: var(--color-background);
   font-family: var(--font-family-inter);
@@ -21,92 +22,6 @@ html {
 a:link,
 a:visited {
   color: var(--color-accent);
-}
-
-/* HEADER */
-header {
-  grid-area: header;
-  background-color: var(--color-background);
-  font-family: var(--font-family-playfair);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: fixed;
-  width: 100%;
-  padding: 10px 0px;
-}
-
-#title {
-  color: var(--color-primary);
-  margin: 0px;
-  text-align: center;
-}
-
-.header-buttons {
-  cursor: pointer;
-  position: fixed;
-  top: 8px;
-  border: none;
-  background-color: var(--color-background);
-}
-
-#menu-button {
-  left: 10px;
-}
-
-#profile-button {
-  right: 10px;
-  top: 15px;
-}
-
-#menu-toggle {
-  display: none;
-}
-
-#menu {
-  max-height: 0;
-  overflow: hidden;
-  position: absolute;
-  top: 60px;
-  width: 100%;
-  background-color: var(--color-background);
-  padding: 0;
-  text-align: center;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  transition: max-height 0.5s ease-in-out, padding 0.3s ease-in-out;
-}
-
-#menu > a:last-child {
-  display: none;
-}
-
-#menu-toggle:checked ~ #menu-container #menu {
-  max-height: 50vh;
-  padding: 10px 0px 0px;
-}
-
-#menu > a > span {
-  color: var(--color-primary);
-  display: block;
-  text-align: center;
-}
-
-#menu a:link,
-#menu a:visited {
-  color: var(--color-text);
-  text-decoration: none;
-}
-
-#greeting {
-  position: fixed;
-  right: 60px;
-  top: 10px;
-  font-size: 14px;
-  color: var(--color-text);
-  white-space: nowrap;
-  max-width: 50%;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* BODY */
@@ -126,25 +41,37 @@ body {
 }
 
 main {
-  padding-top: 60px;
+  padding-top: 64px;
   grid-area: main;
 }
 
-div[id*="hero"] > img {
-  max-width: 100%;
+section h2,
+section h3 {
+  font-family: var(--font-family-playfair);
+  color: var(--color-primary);
+  text-align: center;
+  font-weight: lighter;
+}
+
+section h2 {
+  margin: 0px;
+  padding: 30px 20px;
+}
+
+section p {
+  font-family: var(--font-family-inter);
+  color: var(--color-primary);
+  text-align: center;
+  font-size: smaller;
+}
+
+div[id*="hero"] > img,
+iframe {
+  max-width: 90%;
   display: block;
   height: auto;
   margin: auto;
-}
-
-/* FOOTER */
-footer {
-  grid-area: footer;
-  font-family: var(--font-family-inter);
-  background-color: var(--color-primary);
-  color: var(--color-background);
-  padding: 0px;
-  margin: 0px;
+  border-radius: 8px;
 }
 
 /* RESPONSIVE DESIGN */
@@ -179,5 +106,9 @@ footer {
 
   nav {
     display: inline;
+  }
+
+  #updates {
+    flex: none;
   }
 }
