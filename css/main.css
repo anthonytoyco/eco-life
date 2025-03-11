@@ -81,7 +81,7 @@ header {
 }
 
 #menu-toggle:checked ~ #menu-container #menu {
-  max-height: 300px;
+  max-height: 50vh;
   padding: 10px 0px 0px;
 }
 
