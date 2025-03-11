@@ -20,13 +20,18 @@ header {
 .header-buttons {
   cursor: pointer;
   position: fixed;
-  top: 8px;
   border: none;
   background-color: var(--color-background);
 }
 
 #menu-button {
+  top: 8px;
   left: 10px;
+}
+
+#logo-button {
+  top: 13px;
+  left: 15px;
 }
 
 #profile-button {
@@ -39,7 +44,7 @@ header {
 }
 
 #menu {
-  max-height: 0;
+  max-height: 0px;
   overflow: hidden;
   position: absolute;
   top: 60px;
@@ -50,7 +55,7 @@ header {
   transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
 }
 
-#menu > a:last-child {
+#menu > a[href="profile.html"] {
   display: none;
 }
 
@@ -59,7 +64,7 @@ header {
   padding: 10px 0px 0px;
 }
 
-#menu > a > span {
+.nav-page {
   color: var(--color-primary);
   display: block;
   text-align: center;
@@ -75,10 +80,71 @@ header {
   position: fixed;
   right: 60px;
   top: 10px;
-  font-size: 14px;
+  font-size: 1rem;
   color: var(--color-text);
   white-space: nowrap;
   max-width: 50%;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* RD: PHONE */
+@media (max-width: 767px) {
+  #greeting {
+    display: none;
+  }
+}
+
+/* RD: PHONE + TABLET */
+@media (max-width: 1024px) {
+  .logo-function {
+    display: none;
+  }
+}
+
+/* RD: TABLET + COMPUTER */
+@media (min-width: 768px) {
+}
+
+/* RD: COMPUTER */
+@media (min-width: 1025px) {
+  .menu-function {
+    display: none;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  #menu-container,
+  #menu {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    box-shadow: none;
+    width: 100%;
+  }
+
+  #menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 15px;
+  }
+
+  .nav-page {
+    display: inline-block;
+    font-size: 1.1rem;
+  }
+
+  main {
+    padding-top: 120px;
+  }
 }

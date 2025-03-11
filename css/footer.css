@@ -4,12 +4,17 @@ footer {
   background-color: var(--color-primary);
   color: var(--color-background);
   padding: 15px;
-  font-size: smaller;
+  font-size: 0.8rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 20px;
   justify-content: space-around;
+}
+
+footer a:link,
+footer a:visited {
+  color: var(--color-accent);
 }
 
 #updates {
@@ -25,7 +30,6 @@ footer {
   flex-direction: column;
   width: 100%;
   gap: 10px;
-  width: 100%;
 }
 
 #updates-inputs {
@@ -61,16 +65,26 @@ footer {
   gap: 8px;
 }
 
-#updates-label,
-#credits > p {
+.footer-titles {
   font-family: var(--font-family-playfair);
-  font-size: large;
+  font-size: 1rem;
 }
 
-#logo {
+#footer-logo-div {
   text-align: center;
 }
 
-#logo-img {
+#footer-logo-img {
   margin: 20px 0px;
+  width: 150px;
+  height: 150px;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* RD: COMPUTER */
+@media (min-width: 1025px) {
+  #updates {
+    flex: none;
+  }
 }

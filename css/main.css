@@ -17,11 +17,7 @@
 html {
   background-color: var(--color-background);
   font-family: var(--font-family-inter);
-}
-
-a:link,
-a:visited {
-  color: var(--color-accent);
+  font-size: 16px;
 }
 
 /* BODY */
@@ -34,15 +30,14 @@ body {
   display: grid;
   grid-template-areas:
     "header"
-    "nav"
     "main"
     "footer";
   grid-template-columns: 1fr;
 }
 
 main {
-  padding-top: 64px;
   grid-area: main;
+  padding: 80px 15px;
 }
 
 section h2,
@@ -54,20 +49,37 @@ section h3 {
 }
 
 section h2 {
+  font-size: 2rem;
   margin: 0px;
-  padding: 30px 20px;
+  padding: 20px 20px 0px;
+}
+
+section[id="index-welcome"] h2 {
+  padding: 0px 20px 20px;
+}
+
+section h3 {
+  font-size: 1.5rem;
 }
 
 section p {
   font-family: var(--font-family-inter);
   color: var(--color-primary);
   text-align: center;
-  font-size: smaller;
+  font-size: 0.8rem;
+}
+
+section a:link,
+section a:visited {
+  color: var(--color-accent);
+  display: block;
+  margin: 0 auto;
+  font-family: var(--font-family-playfair);
 }
 
 div[id*="hero"] > img,
 iframe {
-  max-width: 90%;
+  max-width: 100%;
   display: block;
   height: auto;
   margin: auto;
@@ -78,19 +90,30 @@ iframe {
 
 /* RD: PHONE */
 @media (max-width: 767px) {
-  #greeting {
-    display: none;
-  }
+}
+
+/* RD: PHONE + TABLET */
+@media (max-width: 1024px) {
 }
 
 /* RD: TABLET */
 @media (min-width: 768px) and (max-width: 1024px) {
+}
+
+/* RD: TABLET + COMPUTER */
+@media (min-width: 768px) {
   body {
     grid-template-areas:
-      ". header"
+      "nav header"
       "nav main"
-      ". footer";
+      "nav footer";
     grid-template-columns: 0 1fr;
+  }
+  section h2 {
+    font-size: 3rem;
+  }
+  section p {
+    font-size: medium;
   }
 }
 
@@ -102,13 +125,5 @@ iframe {
       "nav main sidebar"
       "footer footer footer";
     grid-template-columns: 0 1fr 0;
-  }
-
-  nav {
-    display: inline;
-  }
-
-  #updates {
-    flex: none;
   }
 }
