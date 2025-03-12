@@ -185,9 +185,6 @@ thead {
   background-color: var(--color-primary);
   color: var(--color-background);
 }
-thead tr {
-  border-radius: 10px 10px 0px 0px;
-}
 th {
   font-size: 0.8rem;
   padding: 1rem;
