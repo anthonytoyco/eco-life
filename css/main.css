@@ -178,7 +178,6 @@ table {
   margin: 2rem auto 0px;
   font-family: var(--font-family-inter);
   color: var(--color-text);
-  border-radius: 10px;
   border-spacing: 0px;
 }
 thead {
@@ -186,11 +185,13 @@ thead {
   background-color: var(--color-primary);
   color: var(--color-background);
 }
+thead tr {
+  border-radius: 10px 10px 0px 0px;
+}
 th {
   font-size: 0.8rem;
   padding: 1rem;
   font-weight: normal;
-  border-radius: 10px;
 }
 td {
   padding: 1rem;
