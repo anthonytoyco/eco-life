@@ -2,12 +2,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
 /* GLOBAL */
-
 :root {
-  /* Fonts */
   --font-family-inter: "Inter", "Arial", sans-serif;
   --font-family-playfair: "Playfair Display", "Times New Roman", serif;
-  /* Colors */
   --color-background: #fbfcf6;
   --color-text: #030d0f;
   --color-primary: #45523e;
@@ -38,8 +35,29 @@ body {
 main {
   grid-area: main;
   padding: 80px 15px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
+/* Links */
+main a:link,
+main a:visited {
+  color: var(--color-accent);
+}
+
+/* Hero images, iframe */
+div[id*="hero"] > img,
+iframe {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  display: block;
+  height: auto;
+  margin: auto;
+  border-radius: 10px;
+}
+
+/* Headings */
 section h2,
 section h3 {
   font-family: var(--font-family-playfair);
@@ -47,43 +65,184 @@ section h3 {
   text-align: center;
   font-weight: lighter;
 }
-
 section h2 {
   font-size: 2rem;
   margin: 0px;
   padding: 20px 20px 0px;
 }
-
 section[id="index-welcome"] h2 {
   padding: 0px 20px 20px;
 }
-
 section h3 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }
 
-section p {
+/* Text */
+section p,
+section ul,
+section address {
   font-family: var(--font-family-inter);
   color: var(--color-primary);
   text-align: center;
   font-size: 0.8rem;
 }
 
-section a:link,
-section a:visited {
-  color: var(--color-accent);
-  display: block;
-  margin: 0 auto;
-  font-family: var(--font-family-playfair);
+/* Lists */
+section ul {
+  list-style-type: none;
+  padding-left: 0px;
+  margin: 1rem 0;
+}
+section li {
+  margin-bottom: 0.5rem;
 }
 
-div[id*="hero"] > img,
-iframe {
-  max-width: 100%;
+/* Button on index.html */
+#action-call {
+  display: flex;
+  justify-content: center;
+}
+#action-call a:link,
+#action-call a:visited {
+  text-decoration: none;
+}
+#action-call a {
+  margin: 20px;
+  padding: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-family: var(--font-family-playfair);
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: var(--color-background);
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+}
+#action-call a:hover {
+  background-color: var(--color-accent);
+}
+
+/* Forms */
+.forms {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px 0px 20px;
+  background-color: var(--color-primary);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.forms label {
+  font-family: var(--font-family-playfair);
+  font-size: 1.2rem;
+  color: var(--color-background);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.forms input,
+.forms select,
+.forms textarea,
+.forms button {
+  width: 60vw;
+  max-width: 500px;
+  padding: 10px;
+  margin: 20px;
+  font-size: 0.8rem;
+  font-family: var(--font-family-inter);
+  color: var(--color-text);
+  border: 2px solid var(--color-accent);
+  border-radius: 10px;
+  background-color: var(--color-background);
+}
+.forms input[type="submit"],
+.forms button {
+  max-width: 250px;
+}
+input[type="submit"]:hover,
+button:hover {
+  background-color: var(--color-accent);
+}
+
+/* Tables */
+.table-wrapper {
+  overflow-x: auto;
+}
+table {
+  table-layout: fixed;
+  width: 150%;
+  max-width: 700px;
+  margin: 2rem auto 0px;
+  font-family: var(--font-family-inter);
+  color: var(--color-text);
+  border-radius: 10px;
+  border-spacing: 0px;
+}
+thead {
+  font-family: var(--font-family-playfair);
+  background-color: var(--color-primary);
+  color: var(--color-background);
+}
+th {
+  font-size: 0.8rem;
+  padding: 1rem;
+  font-weight: normal;
+  border-radius: 10px;
+}
+td {
+  padding: 1rem;
+  font-size: 0.8rem;
+  border: 1px solid var(--color-accent);
+}
+tr:last-child td:first-child {
+  border-radius: 0px 0px 0px 10px;
+}
+tr:last-child td:last-child {
+  border-radius: 0px 0px 10px 0px;
+}
+
+/* Devs section */
+#contact-devs {
+  max-width: 700px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#contact-devs > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+#contact-devs > div img,
+#profile-img {
+  border-radius: 10px;
+  border: 5px solid var(--color-accent);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   display: block;
   height: auto;
   margin: auto;
-  border-radius: 8px;
+}
+
+/* Profile: Profile image */
+#profile-img {
+  margin: 20px auto;
+}
+
+/* Contact: Address */
+section address {
+  padding: 20px;
+}
+
+/* Contact: Google Maps iframe */
+iframe {
+  max-width: 700px;
+  border: 1px solid var(--color-accent);
 }
 
 /* RESPONSIVE DESIGN */
@@ -109,11 +268,20 @@ iframe {
       "nav footer";
     grid-template-columns: 0 1fr;
   }
+
   section h2 {
     font-size: 3rem;
   }
-  section p {
-    font-size: medium;
+
+  section p,
+  section ul,
+  section address {
+    font-size: 1rem;
+  }
+
+  th,
+  td {
+    font-size: 1rem;
   }
 }
 
@@ -125,5 +293,13 @@ iframe {
       "nav main sidebar"
       "footer footer footer";
     grid-template-columns: 0 1fr 0;
+  }
+
+  main {
+    padding-top: 120px;
+  }
+
+  #contact-devs {
+    flex-direction: row;
   }
 }

@@ -11,38 +11,37 @@ header {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Eco-Life title */
 #header-title {
   color: var(--color-primary);
   margin: 0px;
   text-align: center;
 }
 
+/* Menu and profile buttons */
 .header-buttons {
   cursor: pointer;
   position: fixed;
   border: none;
   background-color: var(--color-background);
 }
-
 #menu-button {
   top: 8px;
   left: 10px;
 }
-
 #logo-button {
   top: 13px;
   left: 15px;
 }
-
 #profile-button {
   right: 10px;
   top: 15px;
 }
 
+/* Menu function */
 #menu-toggle {
   display: none;
 }
-
 #menu {
   max-height: 0px;
   overflow: hidden;
@@ -54,32 +53,29 @@ header {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
 }
-
-#menu > a[href="profile.html"] {
+#menu a[href="profile.html"] {
   display: none;
 }
-
 #menu-toggle:checked ~ #menu-container #menu {
   max-height: 50vh;
   padding: 10px 0px 0px;
 }
-
 .nav-page {
   color: var(--color-primary);
   display: block;
   text-align: center;
 }
-
 #menu a:link,
 #menu a:visited {
   color: var(--color-text);
   text-decoration: none;
 }
 
+/* Greeting */
 #greeting {
   position: fixed;
   right: 60px;
-  top: 10px;
+  top: 5px;
   font-size: 1rem;
   color: var(--color-text);
   white-space: nowrap;
@@ -104,16 +100,8 @@ header {
   }
 }
 
-/* RD: TABLET + COMPUTER */
-@media (min-width: 768px) {
-}
-
 /* RD: COMPUTER */
 @media (min-width: 1025px) {
-  .menu-function {
-    display: none;
-  }
-
   header {
     flex-direction: column;
     align-items: center;
@@ -122,6 +110,10 @@ header {
     padding-bottom: 15px;
   }
 
+  /* Remove menu drop down, add menu row */
+  .menu-function {
+    display: none;
+  }
   #menu-container,
   #menu {
     position: static;
@@ -130,7 +122,6 @@ header {
     box-shadow: none;
     width: 100%;
   }
-
   #menu {
     display: flex;
     flex-direction: row;
@@ -138,13 +129,8 @@ header {
     gap: 20px;
     padding-top: 15px;
   }
-
-  .nav-page {
+  #menu.nav-page {
     display: inline-block;
     font-size: 1.1rem;
-  }
-
-  main {
-    padding-top: 120px;
   }
 }

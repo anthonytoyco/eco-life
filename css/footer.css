@@ -12,11 +12,13 @@ footer {
   justify-content: space-around;
 }
 
+/* Footer links */
 footer a:link,
 footer a:visited {
   color: var(--color-accent);
 }
 
+/* Stay Updated form */
 #updates {
   display: flex;
   flex-direction: column;
@@ -24,19 +26,16 @@ footer a:visited {
   flex: 1;
   gap: 40px;
 }
-
-#updates-form {
+#updates form {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 10px;
 }
-
-#updates-inputs {
+#updates form div {
   display: flex;
   border-bottom: 1px solid var(--color-background);
 }
-
 #updates-email {
   flex: 1;
   background: transparent;
@@ -44,11 +43,9 @@ footer a:visited {
   padding: 0px 0px 10px;
   color: var(--color-background);
 }
-
 #updates-email:focus {
   outline: none;
 }
-
 #updates-submit {
   background: none;
   border: none;
@@ -57,6 +54,7 @@ footer a:visited {
   cursor: pointer;
 }
 
+/* GitHub link */
 #github-link {
   align-self: center;
   display: flex;
@@ -65,22 +63,35 @@ footer a:visited {
   gap: 8px;
 }
 
+/* Footer titles */
 .footer-titles {
   font-family: var(--font-family-playfair);
   font-size: 1rem;
 }
 
-#footer-logo-div {
+/* Eco-Life logo */
+#footer-logo {
   text-align: center;
 }
-
-#footer-logo-img {
+#footer-logo img {
   margin: 20px 0px;
   width: 150px;
   height: 150px;
 }
 
 /* RESPONSIVE DESIGN */
+
+/* RD: TABLET + COMPUTER */
+@media (min-width: 768px) {
+  .footer-titles {
+    font-size: 1.2rem;
+  }
+
+  footer p,
+  footer a {
+    font-size: 1rem;
+  }
+}
 
 /* RD: COMPUTER */
 @media (min-width: 1025px) {

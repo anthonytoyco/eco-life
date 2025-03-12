@@ -36,14 +36,14 @@
     </div>
     <p id="greeting"><i>Hello, FIRST LAST</i></p>
     <a id="profile-button" class="header-buttons" href="profile.html">
-      <img id="profile-img" src="assets/icons/profile-icon.png" alt="Profile button" width="35" height="35">
+      <img id="profile-avatar" src="assets/icons/profile-icon.png" alt="Profile button" width="35" height="35">
     </a>
   </header>
 
   <main>
     <section id="profile-info">
       <h2>Your Profile</h2>
-      <img src="assets/images/default-pfp.png" alt="Profile Picture" width="250" height="250">
+      <img id="profile-img" src="assets/images/default-pfp.png" alt="Profile Picture" width="250" height="250">
       <p><strong>Name:</strong> John Doe</p>
       <p><strong>Email:</strong> johndoe@gmail.com</p>
       <p><strong>Total Eco Points:</strong> 500</p>
@@ -52,7 +52,7 @@
 
     <section id="profile-auth-section">
       <h2>Login or Sign Up</h2>
-      <form id="auth-form">
+      <form id="auth-form" class="forms">
         <p>
           <label id="email-label" for="email-input">Email:</label><br>
           <input id="email-input" name="auth-email" type="email" placeholder="example@email.com" required>
@@ -105,8 +105,8 @@
       </ul>
     </div>
 
-    <div id="footer-logo-div">
-      <img id="footer-logo-img" src="assets/icons/logo-light-icon.png" alt="Eco-life logo" width="150" height="150">
+    <div id="footer-logo">
+      <img src="assets/icons/logo-light-icon.png" alt="Eco-life logo" width="150" height="150">
       <p id="copyright">&copy; 2025 Eco-Life</p>
     </div>
   </footer>

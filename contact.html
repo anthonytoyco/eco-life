@@ -36,7 +36,7 @@
     </div>
     <p id="greeting"><i>Hello, FIRST LAST</i></p>
     <a id="profile-button" class="header-buttons" href="profile.html">
-      <img id="profile-img" src="assets/icons/profile-icon.png" alt="Profile button" width="35" height="35">
+      <img id="profile-avatar" src="assets/icons/profile-icon.png" alt="Profile button" width="35" height="35">
     </a>
   </header>
 
@@ -53,23 +53,15 @@
 
     <section id="contact-message-section">
       <h2>Send Us A Message</h2>
-      <form id="message-form">
-        <p>
-          <label id="name-label" for="name-input">Your Name:</label><br>
-          <input id="name-input" name="message-name" type="text" placeholder="John Doe" required>
-        </p>
-        <p>
-          <label id="email-label" for="email-input">Your Email:</label><br>
-          <input id="email-input" name="message-email" type="email" placeholder="john_doe@gmail.com" required>
-        </p>
-        <p>
-          <label id="tel-label" for="tel-input">Your Phone Number:</label><br>
-          <input id="tel-input" name="message-tel" type="tel" placeholder="1234567890" pattern="^\d{10}$" required>
-        </p>
-        <p>
-          <label id="body-label" for="body-input">Your Message:</label><br>
-          <textarea id="body-input" name="message-body" rows="4" placeholder="Good job!" required></textarea>
-        </p>
+      <form id="message-form" class="forms">
+        <label id="name-label" for="name-input">Your Name:</label><br>
+        <input id="name-input" name="message-name" type="text" placeholder="John Doe" required>
+        <label id="email-label" for="email-input">Your Email:</label><br>
+        <input id="email-input" name="message-email" type="email" placeholder="john_doe@gmail.com" required>
+        <label id="tel-label" for="tel-input">Your Phone Number:</label><br>
+        <input id="tel-input" name="message-tel" type="tel" placeholder="1234567890" pattern="^\d{10}$" required>
+        <label id="body-label" for="body-input">Your Message:</label><br>
+        <textarea id="body-input" name="message-body" rows="4" placeholder="Good job!" required></textarea>
         <input type="submit" value="Send Message">
       </form>
     </section>
@@ -77,46 +69,52 @@
     <section id="contact-dev-members">
       <h2>The Development Team</h2>
 
-      <div id="contact-dev-anthony">
-        <h3>Anthony Toyco</h3>
-        <img alt="Anthony Toyco's GitHub Profile Picture" src="https://avatars.githubusercontent.com/u/86866490"
-          width="250">
-        <address>
-          <p>
-            YorkU Email:
-            <a href="mailto:toycoa@my.yorku.ca">toycoa@my.yorku.ca</a><br>
-            GitHub Profile:
-            <a href="https://github.com/anthonytoyco">github.com/anthonytoyco</a><br>
-          </p>
-        </address>
-      </div>
-
-      <div id="contact-dev-draven">
-        <h3>Draven Ng</h3>
-        <img alt="Draven Ng's GitHub Profile Picture" src="https://avatars.githubusercontent.com/u/92891250"
-          width="250">
-        <address>
-          <p>
-            YorkU Email:
-            <a href="mailto:dbibi@my.yorku.ca">dbibi@my.yorku.ca</a><br>
-            GitHub Profile:
-            <a href="https://github.com/xDbibix">github.com/xDbibix</a><br>
-          </p>
-        </address>
-      </div>
-
-      <div id="contact-dev-felex">
-        <h3>Felex Hill</h3>
-        <img alt="Felex Hill's GitHub Profile Picture" src="https://avatars.githubusercontent.com/u/146500839"
-          width="250">
-        <address>
-          <p>
-            YorkU Email:
-            <a href="mailto:fhill7@my.yorku.ca">fhill7@my.yorku.ca</a><br>
-            GitHub Profile:
-            <a href="https://github.com/FelexHill7">github.com/FelexHill7</a><br>
-          </p>
-        </address>
+      <div id="contact-devs">
+        <div id="contact-dev-anthony">
+          <h3>Anthony Toyco</h3>
+          <img alt="Anthony Toyco's GitHub Profile Picture" src="https://avatars.githubusercontent.com/u/86866490"
+            width="200">
+          <address>
+            <p>
+              YorkU Email:
+              <a href="mailto:toycoa@my.yorku.ca">toycoa@my.yorku.ca</a>
+            </p>
+            <p>
+              GitHub Profile:
+              <a href="https://github.com/anthonytoyco">github.com/anthonytoyco</a>
+            </p>
+          </address>
+        </div>
+        <div id="contact-dev-draven">
+          <h3>Draven Ng</h3>
+          <img alt="Draven Ng's GitHub Profile Picture" src="https://avatars.githubusercontent.com/u/92891250"
+            width="200">
+          <address>
+            <p>
+              YorkU Email:
+              <a href="mailto:dbibi@my.yorku.ca">dbibi@my.yorku.ca</a>
+            </p>
+            <p>
+              GitHub Profile:
+              <a href="https://github.com/xDbibix">github.com/xDbibix</a>
+            </p>
+          </address>
+        </div>
+        <div id="contact-dev-felex">
+          <h3>Felex Hill</h3>
+          <img alt="Felex Hill's GitHub Profile Picture" src="https://avatars.githubusercontent.com/u/146500839"
+            width="200">
+          <address>
+            <p>
+              YorkU Email:
+              <a href="mailto:fhill7@my.yorku.ca">fhill7@my.yorku.ca</a>
+            </p>
+            <p>
+              GitHub Profile:
+              <a href="https://github.com/FelexHill7">github.com/FelexHill7</a>
+            </p>
+          </address>
+        </div>
       </div>
     </section>
 
@@ -129,8 +127,7 @@
       </address>
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2877.0694116561913!2d-79.31408492289516!3d43.854389971093184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4d53d28a8b727%3A0xfd7024bab5e7bbfe!2sYork%20University%20Markham%20Campus!5e0!3m2!1sen!2sca!4v1738482821392!5m2!1sen!2sca"
-        width="500" height="500" style="border:0;" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
+        width="500" height="500" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </section>
 
@@ -138,9 +135,9 @@
 
   <footer>
     <div id="updates">
-      <form id="updates-form">
+      <form>
         <label id="updates-label" class="footer-titles" for="updates-email">Stay Updated</label><br>
-        <div id="updates-inputs">
+        <div>
           <input id="updates-email" name="updates-email" type="email" placeholder="Email" required>
           <input id="updates-submit" name="updates-submit" type="submit" value="SUBSCRIBE">
         </div>
@@ -171,8 +168,8 @@
       </ul>
     </div>
 
-    <div id="footer-logo-div">
-      <img id="footer-logo-img" src="assets/icons/logo-light-icon.png" alt="Eco-life logo" width="150" height="150">
+    <div id="footer-logo">
+      <img src="assets/icons/logo-light-icon.png" alt="Eco-life logo" width="150" height="150">
       <p id="copyright">&copy; 2025 Eco-Life</p>
     </div>
   </footer>

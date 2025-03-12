@@ -36,7 +36,7 @@
     </div>
     <p id="greeting"><i>Hello, FIRST LAST</i></p>
     <a id="profile-button" class="header-buttons" href="profile.html">
-      <img id="profile-img" src="assets/icons/profile-icon.png" alt="Profile button" width="35" height="35">
+      <img id="profile-avatar" src="assets/icons/profile-icon.png" alt="Profile button" width="35" height="35">
     </a>
   </header>
 
@@ -53,32 +53,38 @@
 
     <section id="challenges-table">
       <h2>Current Challenges</h2>
-      <table>
-        <tr>
-          <th>Challenge</th>
-          <th>Status</th>
-          <th>Reward</th>
-          <th>Date Achieved</th>
-        </tr>
-        <tr>
-          <td>Buy a Reusable Water Bottle</td>
-          <td>✅ Completed</td>
-          <td>+50 Points</td>
-          <td>December 4, 2024</td>
-        </tr>
-        <tr>
-          <td>Cycle Instead of Driving</td>
-          <td>🕒 In Progress</td>
-          <td>+30 Points</td>
-          <td>January 8, 2025</td>
-        </tr>
-        <tr>
-          <td>Plant a Tree</td>
-          <td>❌ Not Started</td>
-          <td>+100 Points</td>
-          <td>N/A</td>
-        </tr>
-      </table>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Challenge</th>
+              <th>Status</th>
+              <th>Reward</th>
+              <th>Date Achieved</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Buy a Reusable Water Bottle</td>
+              <td>✅ Completed</td>
+              <td>+50 Points</td>
+              <td>December 4, 2024</td>
+            </tr>
+            <tr>
+              <td>Cycle Instead of Driving</td>
+              <td>🕒 In Progress</td>
+              <td>+30 Points</td>
+              <td>January 8, 2025</td>
+            </tr>
+            <tr>
+              <td>Plant a Tree</td>
+              <td>❌ Not Started</td>
+              <td>+100 Points</td>
+              <td>N/A</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section id="progress">
@@ -90,9 +96,9 @@
 
   <footer>
     <div id="updates">
-      <form id="updates-form">
+      <form>
         <label id="updates-label" class="footer-titles" for="updates-email">Stay Updated</label><br>
-        <div id="updates-inputs">
+        <div>
           <input id="updates-email" name="updates-email" type="email" placeholder="Email" required>
           <input id="updates-submit" name="updates-submit" type="submit" value="SUBSCRIBE">
         </div>
@@ -123,8 +129,8 @@
       </ul>
     </div>
 
-    <div id="footer-logo-div">
-      <img id="footer-logo-img" src="assets/icons/logo-light-icon.png" alt="Eco-life logo" width="150" height="150">
+    <div id="footer-logo">
+      <img src="assets/icons/logo-light-icon.png" alt="Eco-life logo" width="150" height="150">
       <p id="copyright">&copy; 2025 Eco-Life</p>
     </div>
   </footer>
