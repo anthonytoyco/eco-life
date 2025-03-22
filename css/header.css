@@ -69,6 +69,7 @@ header {
 #menu a:visited {
   color: var(--color-text);
   text-decoration: none;
+  padding: 0px 15px;
 }
 
 /* Greeting */

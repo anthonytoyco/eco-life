@@ -178,12 +178,19 @@ table {
   margin: 2rem auto 0px;
   font-family: var(--font-family-inter);
   color: var(--color-text);
+  border-collapse: separate;
   border-spacing: 0px;
+  overflow: hidden;
+  border-radius: 10px;
 }
 thead {
   font-family: var(--font-family-playfair);
   background-color: var(--color-primary);
   color: var(--color-background);
+}
+thead th:first-child,
+thead th:last-child {
+  border-top-left-radius: 10px;
 }
 th {
   font-size: 0.8rem;
