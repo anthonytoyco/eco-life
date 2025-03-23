@@ -9,6 +9,7 @@
   <link href="css/main.css" rel="stylesheet">
   <link href="css/header.css" rel="stylesheet">
   <link href="css/footer.css" rel="stylesheet">
+  <script type="module" src="js/formValidation.js"></script>
 </head>
 
 <body>
@@ -63,7 +64,7 @@
         <input id="tel-input" name="message-tel" type="tel" placeholder="1234567890" pattern="^\d{10}$" required>
         <label id="body-label" for="body-input">Your Message</label><br>
         <textarea id="body-input" name="message-body" rows="4" placeholder="Good job!" required></textarea>
-        <input id="message-submit" name="message-submit" type="submit" value="Send Message">
+        <button id="message-button" name="message-button" type="button">Send Message</button>
       </form>
     </section>
 
