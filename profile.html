@@ -9,6 +9,7 @@
   <link href="css/main.css" rel="stylesheet">
   <link href="css/header.css" rel="stylesheet">
   <link href="css/footer.css" rel="stylesheet">
+  <script src="js/main.js"></script>
 </head>
 
 <body>
@@ -42,6 +43,10 @@
   </header>
 
   <main>
+    <div id="profile-hero">
+      <img src="assets/images/heros/profile-hero.jpg" alt="Person holding green leaf plant" width="700" height="500">
+    </div>
+
     <section id="profile-info">
       <h2>Your Profile</h2>
       <img id="profile-img" src="assets/images/default-pfp.png" alt="Profile Picture" width="250" height="250">
@@ -53,17 +58,21 @@
 
     <section id="profile-auth-section">
       <h2>Login or Sign Up</h2>
-      <form id="auth-form" class="forms">
-        <p>
-          <label id="email-label" for="email-input">Email:</label><br>
-          <input id="email-input" name="auth-email" type="email" placeholder="example@email.com" required>
-        </p>
-        <p>
-          <label id="password-label" for="password-input">Password:</label><br>
-          <input id="password-input" name="auth-password" type="password" placeholder="Enter your password" required>
-        </p>
-        <button id="login-button" name="auth-login-button" type="submit">Login</button>
-        <button id="signup-button" name="auth-signup-button" type="button">Sign Up</button>
+      <form id="login-form" class="forms">
+        <p>Login</p>
+        <label id="json-label" for="json-input">Import Eco-Life User Data</label><br>
+        <input id="json-input" name="auth-login-button" type="file" accept=".json" required></label><br>
+        <button id="login-button" name="login-button" type="button">Log In</button>
+      </form>
+      <form id="signup-form" class="forms">
+        <p>Create a New Account</p>
+        <label id="email-label" for="email-input">Email</label><br>
+        <input id="email-input" name="auth-email" type="email" placeholder="example@email.com" required>
+        <label id="name-label" for="name-input">Name</label><br>
+        <input id="name-input" name="auth-name" placeholder="Enter your first and last name" required>
+        <label id="date-input" for="create-date">Birthday</label><br>
+        <input id="create-date" type="date" name="create-date" required>
+        <button id="signup-button" name="signup-button" type="button">Sign Up</button>
       </form>
     </section>
 
@@ -94,6 +103,13 @@
                 tree in a field with the sun shining through the clouds</a></cite> by <a
               href="https://www.freepik.com/author/bydigitaltreasures" target="_blank">ByDigitalTreasures</a> from
             Freepik.
+          </p>
+        </li>
+        <li>
+          <p>
+            <cite><a href="https://unsplash.com/photos/person-holding-green-leaf-plant-uv6lUONd19w">Person holding green
+                leaf plant</a></cite>
+            by <a href="https://unsplash.com/@kasturi09" target="_blank">Kasturi Laxmi Mohit</a> from Unsplash.
           </p>
         </li>
       </ul>

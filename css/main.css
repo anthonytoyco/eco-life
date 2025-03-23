@@ -136,12 +136,16 @@ section li {
   flex-direction: column;
   align-items: center;
 }
-.forms label {
+.forms label,
+.forms p {
   font-family: var(--font-family-playfair);
   font-size: 1.2rem;
   color: var(--color-background);
   display: block;
-  margin-bottom: 0.5rem;
+}
+.forms p {
+  font-size: 2rem;
+  margin: 15px 0px;
 }
 .forms input,
 .forms select,
@@ -159,8 +163,11 @@ section li {
   background-color: var(--color-background);
 }
 .forms input[type="submit"],
+.forms input[type="date"],
+.forms input[type="file"],
 .forms button {
   max-width: 250px;
+  cursor: pointer;
 }
 input[type="submit"]:hover,
 button:hover {
@@ -234,6 +241,10 @@ tr:last-child td:last-child {
   margin: auto;
 }
 
+/* Profile: Profile info (will be shown if logged in) */
+#profile-info {
+  display: none;
+}
 /* Profile: Profile image */
 #profile-img {
   margin: 20px auto;
@@ -243,7 +254,6 @@ tr:last-child td:last-child {
 section address {
   padding: 20px;
 }
-
 /* Contact: Google Maps iframe */
 iframe {
   max-width: 700px;
