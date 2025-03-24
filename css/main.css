@@ -9,6 +9,7 @@
   --color-text: #030d0f;
   --color-primary: #45523e;
   --color-accent: #a1a08f;
+  --color-error: #ff0033;
 }
 
 html {
@@ -172,6 +173,11 @@ section li {
 input[type="submit"]:hover,
 button:hover {
   background-color: var(--color-accent);
+}
+form .error-message {
+  font-size: 1rem;
+  color: var(--color-error);
+  padding: 0px 0px 30px;
 }
 
 /* Tables */

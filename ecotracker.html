@@ -9,6 +9,7 @@
   <link href="css/main.css" rel="stylesheet">
   <link href="css/header.css" rel="stylesheet">
   <link href="css/footer.css" rel="stylesheet">
+  <script type="module" src="js/formValidation.js"></script>
 </head>
 
 <body>
@@ -58,7 +59,7 @@
       <form id="ecotracker" class="forms">
         <label id="log-action-label" for="log-action">Select an Action</label><br>
         <select id="log-action" name="log-action" required>
-          <option value="">-- Choose an action --</option>
+          <option value="default">-- Choose an action --</option>
           <option value="reusable_bottle">Used a reusable water bottle</option>
           <option value="public_transport">Took public transport or biked</option>
           <option value="reduced_food_waste">Reduced food waste</option>
@@ -66,7 +67,7 @@
         </select>
         <label id=log-date-label for="log-date">Date</label><br>
         <input id="log-date" name="log-date" type="date" required>
-        <input id="log-submit" type="submit" value="Log Action">
+        <button id="log-submit" name="submit-button" type="button">Log Action</button>
       </form>
     </section>
 

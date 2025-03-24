@@ -1,4 +1,6 @@
-"use strict";
+import { FormUtils } from "./formUtils.js";
+
+("use strict");
 
 /**
  * Represents an HTML form element.
@@ -108,6 +110,15 @@ export class Form {
       }
     });
 
+    // Validate select inputs
+    const selectInputs = this.inputs["select-one"] || [];
+    selectInputs.forEach((selectInput) => {
+      if (selectInput.value === "default") {
+        isValid = false;
+        this.displayError(selectInput, "Please select a valid option.");
+      }
+    });
+
     return isValid;
   }
 
@@ -135,14 +146,41 @@ export class Form {
    * Handles the button click event.
    * @param {Event} event - The button click event.
    */
-  handleButtonClick(event) {
+  async handleButtonClick(event) {
     if (!this.validate()) {
       // Prevent submissions if user inputs are invalid
       event.preventDefault();
     } else {
-      console.log("Form is valid. Proceed with further actions.");
-      // Add any additional logic for successful validation here
+      switch (this.source.id) {
+        case "login-form":
+          try {
+            await FormUtils.loadAccount(this.source);
+            this.resetForm();
+          } catch (error) {
+            alert("Failed to load user account. Please check the file format.");
+            console.error("Failed to load user account:", error.message);
+          }
+          break;
+        case "signup-form":
+          FormUtils.createAccount(this.source);
+          this.resetForm();
+          break;
+      }
     }
+  }
+
+  /**
+   * Resets all inputs in the form.
+   */
+  resetForm() {
+    const inputs = this.source.querySelectorAll("input, select, textarea");
+    inputs.forEach((input) => {
+      if (input.type === "checkbox" || input.type === "radio") {
+        input.checked = false;
+      } else {
+        input.value = "";
+      }
+    });
   }
 }
 
