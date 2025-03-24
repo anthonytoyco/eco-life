@@ -98,16 +98,17 @@ section li {
   margin-bottom: 0.5rem;
 }
 
-/* Button on index.html */
-#action-call {
+/* Action call on index.html */
+.action-call {
   display: flex;
   justify-content: center;
 }
-#action-call a:link,
-#action-call a:visited {
+.action-call a:link,
+.action-call a:visited {
   text-decoration: none;
+  color: var(--color-background);
 }
-#action-call a {
+.action-call a {
   margin: 20px;
   padding: 15px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -121,8 +122,9 @@ section li {
   border-radius: 10px;
   text-align: center;
 }
-#action-call a:hover {
+.action-call a:hover {
   background-color: var(--color-accent);
+  color: var(--color-text);
 }
 
 /* Forms */
@@ -170,8 +172,8 @@ section li {
   max-width: 250px;
   cursor: pointer;
 }
-input[type="submit"]:hover,
-button:hover {
+.forms input[type="submit"]:hover,
+.forms button:hover {
   background-color: var(--color-accent);
 }
 form .error-message {
@@ -254,6 +256,33 @@ tr:last-child td:last-child {
 /* Profile: Profile image */
 #profile-img {
   margin: 20px auto;
+}
+/* Profile: Actions */
+#profile-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  gap: 30px;
+}
+
+/* UI Buttons */
+.ui-button {
+  cursor: pointer;
+  width: 60vw;
+  max-width: 250px;
+  padding: 10px;
+  font-size: 1rem;
+  font-family: var(--font-family-inter);
+  color: var(--color-background);
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-accent);
+  border-radius: 10px;
+}
+.ui-button:hover {
+  background-color: var(--color-accent);
+  color: var(--color-text);
 }
 
 /* Contact: Address */

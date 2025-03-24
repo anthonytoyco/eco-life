@@ -26,6 +26,10 @@ export class User {
    * @type {Object<string, any[]>} - An object containing arrays for ecoActions, challenges, achievements, and friends.
    */
   data;
+  /**
+   * @type {number} - The user's ecopoints.
+   */
+  ecopoints;
 
   /**
    * Creates a new User instance. Called when user creates an account.
@@ -44,6 +48,7 @@ export class User {
       achievements: [],
       friends: [],
     };
+    this.ecopoints = 0;
     this.saveToLocalStorage();
   }
 
@@ -58,6 +63,7 @@ export class User {
       name: this.name,
       birthday: this.birthday,
       data: this.data,
+      ecopoints: this.ecopoints,
     };
 
     localStorage.setItem("user", JSON.stringify(userData));
@@ -74,6 +80,7 @@ export class User {
       name: this.name,
       birthday: this.birthday,
       data: this.data,
+      ecopoints: this.ecopoints,
     };
 
     const jsonData = JSON.stringify(userData, null, 2);

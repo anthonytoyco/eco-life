@@ -10,6 +10,7 @@
   <link href="css/header.css" rel="stylesheet">
   <link href="css/footer.css" rel="stylesheet">
   <script type="module" src="js/formValidation.js"></script>
+  <script type="module" src="js/uiManager.js"></script>
 </head>
 
 <body>
@@ -36,7 +37,7 @@
         <a href="profile.html"><span class="nav-page">Profile</span></a>
       </nav>
     </div>
-    <p id="greeting"><i>Hello, FIRST LAST</i></p>
+    <p id="greeting"><i>Welcome to Eco-Life</i></p>
     <a id="profile-button" class="header-buttons" href="profile.html">
       <img id="profile-avatar" src="assets/icons/profile-icon.png" alt="Profile button" width="35" height="35">
     </a>
@@ -56,18 +57,15 @@
 
     <section id="ecotracker-log-form">
       <h2>Eco Action Logger</h2>
-      <form id="ecotracker" class="forms">
-        <label id="log-action-label" for="log-action">Select an Action</label><br>
-        <select id="log-action" name="log-action" required>
-          <option value="default">-- Choose an action --</option>
-          <option value="reusable_bottle">Used a reusable water bottle</option>
-          <option value="public_transport">Took public transport or biked</option>
-          <option value="reduced_food_waste">Reduced food waste</option>
-          <option value="planted_tree">Planted a tree</option>
-        </select>
-        <label id=log-date-label for="log-date">Date</label><br>
-        <input id="log-date" name="log-date" type="date" required>
-        <button id="log-submit" name="submit-button" type="button">Log Action</button>
+      <form id="ecotracker-form" class="forms">
+        <label id="log-date-label" for="log-date-input">Date</label><br>
+        <input id="log-date-input" name="log-date-input" type="date" required><br>
+        <label id="log-action-label" for="log-action-input">Action</label><br>
+        <input id="log-action-input" name="log-action-input" type="text" placeholder="Describe your action"
+          required><br>
+        <label id="log-impact-label" for="log-impact-input">Impact</label><br>
+        <input id="log-impact-input" name="log-impact-input" type="text" placeholder="Describe the impact" required><br>
+        <button id="log-submit-button" name="submit-button" type="button">Log Action</button>
       </form>
     </section>
 
@@ -80,18 +78,21 @@
               <th>Date</th>
               <th>Action</th>
               <th>Impact</th>
+              <th>Action</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="eco-summary-body">
             <tr>
               <td>2025-02-01</td>
               <td>Used a reusable water bottle</td>
               <td>Saved 0.5kg of plastic waste</td>
+              <td>X</td>
             </tr>
             <tr>
               <td>2025-02-02</td>
               <td>Took public transport</td>
               <td>Reduced CO₂ emissions by 2kg</td>
+              <td>X</td>
             </tr>
           </tbody>
         </table>

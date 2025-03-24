@@ -1,4 +1,5 @@
 import { FormUtils } from "./formUtils.js";
+import { AuthedUI } from "./uiManager.js";
 
 ("use strict");
 
@@ -156,6 +157,7 @@ export class Form {
           try {
             await FormUtils.loadAccount(this.source);
             this.resetForm();
+            AuthedUI.update();
           } catch (error) {
             alert("Failed to load user account. Please check the file format.");
             console.error("Failed to load user account:", error.message);
@@ -164,6 +166,12 @@ export class Form {
         case "signup-form":
           FormUtils.createAccount(this.source);
           this.resetForm();
+          AuthedUI.update();
+          break;
+        case "ecotracker-form":
+          FormUtils.addEcoAction(this.source);
+          this.resetForm();
+          AuthedUI.update();
           break;
       }
     }

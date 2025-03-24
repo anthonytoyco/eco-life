@@ -10,6 +10,7 @@
   <link href="css/header.css" rel="stylesheet">
   <link href="css/footer.css" rel="stylesheet">
   <script type="module" src="js/formValidation.js"></script>
+  <script type="module" src="js/uiManager.js"></script>
 </head>
 
 <body>
@@ -36,7 +37,7 @@
         <a href="profile.html"><span class="nav-page">Profile</span></a>
       </nav>
     </div>
-    <p id="greeting"><i>Hello, FIRST LAST</i></p>
+    <p id="greeting"><i>Welcome to Eco-Life</i></p>
     <a id="profile-button" class="header-buttons" href="profile.html">
       <img id="profile-avatar" src="assets/icons/profile-icon.png" alt="Profile button" width="35" height="35">
     </a>
@@ -50,10 +51,16 @@
     <section id="profile-info">
       <h2>Your Profile</h2>
       <img id="profile-img" src="assets/images/default-pfp.png" alt="Profile Picture" width="250" height="250">
-      <p><strong>Name:</strong> John Doe</p>
-      <p><strong>Email:</strong> johndoe@gmail.com</p>
-      <p><strong>Total Eco Points:</strong> 500</p>
+      <p id="profile-info-name"><strong>Name:</strong> John Doe</p>
+      <p id="profile-info-email"><strong>Email:</strong> johndoe@gmail.com</p>
+      <p id="profile-info-birthday"><strong>Birthday:</strong> January 1, 2025</p>
+      <p id="profile-info-ecopoints"><strong>Total Eco Points:</strong> 500</p>
       <p><strong>Achievements:</strong> Eco Champion Badge</p>
+      <div id="profile-actions">
+        <button id="export-button" class="ui-button" type="button" onclick="AuthedUI.exportUserData()">Export Profile
+          Data</button>
+        <button id="logout-button" class="ui-button" type="button" onclick="AuthedUI.logout()">Logout</button>
+      </div>
     </section>
 
     <section id="profile-auth-section">
