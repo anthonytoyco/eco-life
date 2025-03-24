@@ -1,22 +1,8 @@
-/**
- * Base class for all data types.
- */
-export class BaseData {
-  /**
-   * Formats a date into a readable string (e.g., "February 1, 2025").
-   * @param {Date} date - The date to format.
-   * @returns {string} - The formatted date.
-   */
-  getFormattedDate(date) {
-    return date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  }
-}
+"use strict";
 
-export class EcoAction extends BaseData {
+import { UIManager } from "./uiManager.js";
+
+export class EcoAction {
   /**
    * Creates a new EcoAction instance.
    * @param {Date|string} date - The date the action was logged.
@@ -24,22 +10,73 @@ export class EcoAction extends BaseData {
    * @param {string} impact - The impact of the action.
    */
   constructor(date, action, impact) {
-    super(); // Call the parent class constructor
     this.date = date instanceof Date ? date : new Date(date);
     this.action = action;
     this.impact = impact;
   }
 
   /**
-   * Gets the formatted date for the eco action.
-   * @returns {string} - The formatted date.
+   * Adds an eco action to the user's data in localStorage.
+   * @param {HTMLElement} form - The form element containing eco action input.
    */
-  getFormattedDate() {
-    return super.getFormattedDate(this.date);
+  static add(form) {
+    // Extract form data
+    const date = form.querySelector("input[name='log-date-input']").value;
+    const action = form
+      .querySelector("input[name='log-action-input']")
+      .value.trim();
+    const impact = form
+      .querySelector("input[name='log-impact-input']")
+      .value.trim();
+
+    // Retrieve the user data from localStorage
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (!userData) {
+      alert("No user is logged in. Please log in to add an eco action.");
+      return;
+    }
+
+    // Create a new EcoAction instance
+    const ecoAction = new EcoAction(new Date(date), action, impact);
+
+    // Add the eco action to the user's data
+    userData.data.ecoActions = userData.data.ecoActions || [];
+    userData.data.ecoActions.push(ecoAction);
+
+    // Save the updated user data back to localStorage
+    localStorage.setItem("user", JSON.stringify(userData));
+
+    // Notify the user
+    alert("Eco action added successfully!");
+  }
+
+  /**
+   * Deletes an EcoAction from the user's data in localStorage and updates the table.
+   * @param {number} index - The index of the EcoAction to delete.
+   */
+  static delete(index) {
+    const userData = JSON.parse(localStorage.getItem("user"));
+
+    if (!userData || !userData.data.ecoActions) {
+      console.warn("No EcoActions found for the user.");
+      return;
+    }
+
+    // Remove the EcoAction at the specified index
+    userData.data.ecoActions.splice(index, 1);
+
+    // Save the updated user data back to localStorage
+    localStorage.setItem("user", JSON.stringify(userData));
+
+    // Update the table
+    UIManager.updateEcoTrackerTable(userData.data.ecoActions);
+
+    // Notify the user
+    alert("Eco action deleted successfully!");
   }
 }
 
-export class Challenge extends BaseData {
+export class Challenge {
   /**
    * Creates a new Challenge instance.
    * @param {string} name - The name of the challenge.
@@ -48,24 +85,15 @@ export class Challenge extends BaseData {
    * @param {Date|string} dateAchieved - The date the challenge was achieved.
    */
   constructor(name, status, reward, dateAchieved) {
-    super();
     this.name = name;
     this.status = status;
     this.reward = reward;
     this.dateAchieved =
       dateAchieved instanceof Date ? dateAchieved : new Date(dateAchieved);
   }
-
-  /**
-   * Gets the formatted date for the challenge.
-   * @returns {string} - The formatted date.
-   */
-  getFormattedDate() {
-    return super.getFormattedDate(this.dateAchieved);
-  }
 }
 
-export class Achievement extends BaseData {
+export class Achievement {
   /**
    * Creates a new Achievement instance.
    * @param {string} badge - The badge associated with the achievement.
@@ -73,23 +101,14 @@ export class Achievement extends BaseData {
    * @param {Date|string} dateAchieved - The date the achievement was earned.
    */
   constructor(badge, description, dateAchieved) {
-    super();
     this.badge = badge;
     this.description = description;
     this.dateAchieved =
       dateAchieved instanceof Date ? dateAchieved : new Date(dateAchieved);
   }
-
-  /**
-   * Gets the formatted date for the achievement.
-   * @returns {string} - The formatted date.
-   */
-  getFormattedDate() {
-    return super.getFormattedDate(this.dateAchieved);
-  }
 }
 
-export class Friend extends BaseData {
+export class Friend {
   /**
    * Creates a new Friend instance.
    * @param {string} name - The name of the friend.
@@ -97,7 +116,6 @@ export class Friend extends BaseData {
    * @param {number} rank - The rank of the friend on the leaderboard.
    */
   constructor(name, points, rank) {
-    super();
     this.name = name;
     this.points = points;
     this.rank = rank;

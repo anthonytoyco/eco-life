@@ -1,7 +1,8 @@
-import { FormUtils } from "./formUtils.js";
-import { AuthedUI } from "./uiManager.js";
+"use strict";
 
-("use strict");
+import { User } from "./userData.js";
+import { UIManager } from "./uiManager.js";
+import { EcoAction } from "./dataTypes.js";
 
 /**
  * Represents an HTML form element.
@@ -155,23 +156,23 @@ export class Form {
       switch (this.source.id) {
         case "login-form":
           try {
-            await FormUtils.loadAccount(this.source);
+            await User.importUser(this.source);
             this.resetForm();
-            AuthedUI.update();
+            UIManager.update();
           } catch (error) {
             alert("Failed to load user account. Please check the file format.");
             console.error("Failed to load user account:", error.message);
           }
           break;
         case "signup-form":
-          FormUtils.createAccount(this.source);
+          User.createUser(this.source);
           this.resetForm();
-          AuthedUI.update();
+          UIManager.update();
           break;
         case "ecotracker-form":
-          FormUtils.addEcoAction(this.source);
+          EcoAction.add(this.source);
           this.resetForm();
-          AuthedUI.update();
+          UIManager.update();
           break;
       }
     }

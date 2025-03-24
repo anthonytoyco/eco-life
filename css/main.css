@@ -44,6 +44,7 @@ main {
 main a:link,
 main a:visited {
   color: var(--color-accent);
+  font-weight: bold;
 }
 
 /* Hero images, iframe */
