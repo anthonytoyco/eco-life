@@ -175,7 +175,7 @@ export class Form {
             `Your email: ${email}\nYour name: ${name}\nIs this information correct?`
           );
           if (confirmation) {
-            User.createUser(name, email);
+            User.createUser(email, name);
             this.resetForm();
             UIManager.update();
           }

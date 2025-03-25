@@ -23,9 +23,24 @@ export class UIManager {
         // Update the profile info section
         const profileInfo = document.getElementById("profile-info");
         profileInfo.style.display = "block";
+
+        // Format the createdDate to include both date and time
+        const createdDate = new Date(userData.createdDate).toLocaleString(
+          "en-US",
+          {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: true, // Use 12-hour format
+          }
+        );
+
         this.updateElement(
           "profile-info-start",
-          `<p><strong>Created on:</strong> ${userData.createdDate}</p>`
+          `<p><strong>Created on:</strong> ${createdDate}</p>`
         );
         this.updateElement(
           "profile-info-name",

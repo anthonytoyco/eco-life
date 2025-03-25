@@ -43,11 +43,7 @@ export class User {
     }
     this.email = email;
     this.name = name;
-    this.createdDate = new Date().toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    });
+    this.createdDate = new Date(); // Save as a Date object
     this.data = {
       ecoActions: [],
       challenges: [],
@@ -63,7 +59,7 @@ export class User {
    */
   saveToLocalStorage() {
     const userData = {
-      createdDate: this.createdDate,
+      createdDate: this.createdDate.toISOString(), // Save as an ISO string
       email: this.email,
       name: this.name,
       data: this.data,
@@ -74,6 +70,7 @@ export class User {
 
   /**
    * Exports the user's data as a JSON file from localStorage.
+   * The file name includes the user's email and the date and time of export.
    */
   static exportUser() {
     // Retrieve user data from localStorage
@@ -82,11 +79,30 @@ export class User {
     // Convert the user data to a JSON string
     const jsonData = JSON.stringify(userData, null, 2);
 
+    // Generate a readable date and time string for the file name
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+    const formattedTime = now
+      .toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      })
+      .replace(/:/g, "-"); // Replace colons with dashes for file name compatibility
+
+    // Create the file name
+    const fileName = `Eco-Life_${userData.email}_${formattedDate}_${formattedTime}.json`;
+
     // Create a Blob and trigger a download
     const blob = new Blob([jsonData], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = `Eco-Life_${userData.email}_data.json`;
+    a.download = fileName;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -134,7 +150,7 @@ export class User {
       email: userData.email,
       name: userData.name,
     });
-    user.createdDate = userData.createdDate;
+    user.createdDate = new Date(userData.createdDate);
     user.data = userData.data;
     user.ecopoints = userData.ecopoints;
 
