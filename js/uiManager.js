@@ -73,27 +73,42 @@ export class UIManager {
     // Clear the table body
     tableBody.innerHTML = "";
 
-    // Populate the table with ecoActions
-    ecoActions.forEach((action, index) => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${new Date(action.date).toLocaleDateString("en-US", {
-          month: "long",
-          day: "numeric",
-          year: "numeric",
-        })}</td>
-        <td>${action.action}</td>
-        <td>${action.impact}</td>
-        <td><button class="delete-button" data-index="${index}">Delete</button></td>
+    if (ecoActions.length === 0) {
+      // Add a row that spans all columns if there are no ecoActions
+      const emptyRow = document.createElement("tr");
+      const columnCount = document
+        .getElementById("ecotracker-table")
+        .querySelectorAll("thead th").length;
+
+      emptyRow.innerHTML = `
+        <td colspan="${columnCount}" style="text-align: center; font-style: italic; color: var(--color-accent); font-weight: bold;">
+          Add some Eco-Actions!
+        </td>
       `;
+      tableBody.appendChild(emptyRow);
+    } else {
+      // Populate the table with ecoActions
+      ecoActions.forEach((action, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${new Date(action.date).toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          })}</td>
+          <td>${action.action}</td>
+          <td>${action.impact}</td>
+          <td><button class="delete-button" data-index="${index}">Delete</button></td>
+        `;
 
-      // Add delete functionality to the button
-      row.querySelector(".delete-button").addEventListener("click", () => {
-        EcoAction.delete(index);
+        // Add delete functionality to the button
+        row.querySelector(".delete-button").addEventListener("click", () => {
+          EcoAction.delete(index);
+        });
+
+        tableBody.appendChild(row);
       });
-
-      tableBody.appendChild(row);
-    });
+    }
   }
 
   /**
