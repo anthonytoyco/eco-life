@@ -17,7 +17,7 @@ export class UIManager {
 
       // Only runs in the profile page
       if (window.location.pathname.endsWith("profile.html")) {
-        // Hide the login/signup forms
+        // Hide the auth forms
         this.hideElement("profile-auth-section");
 
         // Update the profile info section

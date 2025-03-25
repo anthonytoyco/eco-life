@@ -2,10 +2,12 @@
 
 /**
  * Represents an Eco-Life user.
+ * This class manages user data, including email, name, eco actions, challenges, achievements, and eco-points.
+ * It also provides methods for saving, exporting, and importing user data.
  */
 export class User {
   /**
-   * @type {string} - Date that the account was created.
+   * @type {string} - The date the account was created, formatted as "Month Day, Year" (e.g., "March 24, 2025").
    */
   createdDate;
   /**
@@ -17,7 +19,11 @@ export class User {
    */
   name;
   /**
-   * @type {Object<string, any[]>} - An object containing arrays for ecoActions, challenges, achievements, and friends.
+   * @type {Object<string, any[]>} - An object containing user-related data.
+   * @property {Array<Object>} ecoActions - A list of eco-friendly actions performed by the user.
+   * @property {Array<Object>} challenges - A list of challenges the user has participated in.
+   * @property {Array<Object>} achievements - A list of achievements earned by the user.
+   * @property {Array<Object>} friends - A list of the user's friends.
    */
   data;
   /**
@@ -53,7 +59,7 @@ export class User {
   }
 
   /**
-   * Saves the user instance to localStorage.
+   * Saves the user instance to localStorage as a JSON string.
    */
   saveToLocalStorage() {
     const userData = {
@@ -85,25 +91,27 @@ export class User {
     a.click();
     document.body.removeChild(a);
 
+    // Alert user
     console.log("User exported successfully:", userData);
+    alert("User exported successfully!");
   }
 
   /**
-   * Creates a User instance from form data.
-   * @param {HTMLElement} form - The form element containing user input.
+   * Creates a new User instance and saves it to localStorage.
+   * @param {string} email - The user's email address.
+   * @param {string} name - The user's full name.
    * @returns {User} - A new User instance.
    */
-  static createUser(form) {
-    const email = form.querySelector("input[name='email-input']").value.trim();
-    const name = form.querySelector("input[name='name-input']").value.trim();
-    const userData = new User({ email, name });
-    console.log("User created successfully:", userData);
+  static createUser(email, name) {
+    const user = new User({ email, name });
+    console.log("User created successfully:", user);
     alert("User created successfully!");
-    return userData;
+    return user;
   }
 
   /**
    * Creates a User instance from a JSON file uploaded via a form.
+   * The JSON file must contain valid user data, including email, name, and data fields.
    * @param {HTMLFormElement} form - The form element containing the file input.
    * @returns {Promise<User>} - A promise that resolves to a User instance.
    */
@@ -126,7 +134,7 @@ export class User {
       email: userData.email,
       name: userData.name,
     });
-    user.createdDate = new Date(userData.createdDate);
+    user.createdDate = userData.createdDate;
     user.data = userData.data;
     user.ecopoints = userData.ecopoints;
 
@@ -141,18 +149,21 @@ export class User {
   }
 
   /**
-   * Logs the user out by clearing the user data from localStorage
-   * and updating the UI to reflect the logged-out state.
+   * Logs the user out by clearing the user data from localStorage.
+   * Reloads the page to reset the UI to the logged-out state.
    */
   static logout() {
-    // Remove the user data from localStorage
-    localStorage.removeItem("user");
+    const confirmation = confirm("Are you sure you want to log out?");
+    if (confirmation) {
+      // Remove the user data from localStorage
+      localStorage.removeItem("user");
 
-    // Notify the user
-    alert("You have been logged out.");
+      // Alert user
+      alert("You have been logged out.");
 
-    // Reset the UI to the logged-out state
-    location.reload();
+      // Reset the UI to the logged-out state
+      location.reload();
+    }
   }
 }
 

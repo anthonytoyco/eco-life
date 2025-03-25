@@ -165,9 +165,20 @@ export class Form {
           }
           break;
         case "signup-form":
-          User.createUser(this.source);
-          this.resetForm();
-          UIManager.update();
+          const email = this.source
+            .querySelector("input[name='email-input']")
+            .value.trim();
+          const name = this.source
+            .querySelector("input[name='name-input']")
+            .value.trim();
+          const confirmation = confirm(
+            `Your email: ${email}\nYour name: ${name}\nIs this information correct?`
+          );
+          if (confirmation) {
+            User.createUser(name, email);
+            this.resetForm();
+            UIManager.update();
+          }
           break;
         case "ecotracker-form":
           EcoAction.add(this.source);

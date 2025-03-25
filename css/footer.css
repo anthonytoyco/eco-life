@@ -16,6 +16,7 @@ footer {
 footer a:link,
 footer a:visited {
   color: var(--color-accent);
+  font-weight: bold;
 }
 
 /* Stay Updated form */
