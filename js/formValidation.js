@@ -181,8 +181,10 @@ export class Form {
           }
           break;
         case "ecotracker-form":
-          EcoAction.add(this.source);
-          this.resetForm();
+          const valid = EcoAction.add(this.source);
+          if (valid) {
+            this.resetForm();
+          }
           UIManager.update();
           break;
         case "message-form":

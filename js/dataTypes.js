@@ -54,24 +54,32 @@ export class EcoAction {
       .value.trim();
 
     const userData = User.getUser();
+    if (userData) {
+      // Create a new EcoAction instance with the current date as createdDate
+      const ecoAction = new EcoAction(
+        new Date(),
+        new Date(date),
+        action,
+        impact
+      );
 
-    // Create a new EcoAction instance with the current date as createdDate
-    const ecoAction = new EcoAction(new Date(), new Date(date), action, impact);
+      // Add the eco action to the user's data
+      userData.ecoData.ecoActions = userData.ecoData.ecoActions || [];
+      userData.ecoData.ecoActions.push(ecoAction);
 
-    // Add the eco action to the user's data
-    userData.ecoData.ecoActions = userData.ecoData.ecoActions || [];
-    userData.ecoData.ecoActions.push(ecoAction);
+      // Save the updated user data back to localStorage
+      User.setUser(userData);
 
-    // Save the updated user data back to localStorage
-    User.setUser(userData);
+      // Update ecoPoints
+      EcoAction.updateEcoPoints(1);
 
-    // Update ecoPoints
-    EcoAction.updateEcoPoints(1);
+      // Refresh the UI
+      UIManager.update();
 
-    // Refresh the UI
-    UIManager.update();
-
-    alert("Eco action added successfully!");
+      alert("Eco action added successfully!");
+    } else {
+      alert("You must be logged in to add an Eco-Action!");
+    }
   }
 
   /**
