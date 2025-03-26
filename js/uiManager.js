@@ -1,15 +1,16 @@
 "use strict";
 
 import { EcoAction } from "./dataTypes.js";
+import { User } from "./userData.js";
 
 export class UIManager {
   /**
    * Updates the HTML elements to reflect the logged-in state.
-   * Fetches user data from localStorage.
+   * Fetches user data using the User class.
    */
   static update() {
-    // Retrieve user data from localStorage
-    const userData = JSON.parse(localStorage.getItem("user"));
+    // Retrieve user data using the User class
+    const userData = User.getUser();
 
     if (userData) {
       // Update the greeting message

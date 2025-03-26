@@ -19,17 +19,17 @@ export class User {
    */
   name;
   /**
-   * @type {Object<string, any[]>} - An object containing user-related data.
+   * @type {Object<string, any[]>} - An object containing user-related eco data.
    * @property {Array<Object>} ecoActions - A list of eco-friendly actions performed by the user.
    * @property {Array<Object>} challenges - A list of challenges the user has participated in.
    * @property {Array<Object>} achievements - A list of achievements earned by the user.
    * @property {Array<Object>} friends - A list of the user's friends.
    */
-  data;
+  ecoData;
   /**
-   * @type {number} - The user's ecopoints.
+   * @type {number} - The user's ecoPoints.
    */
-  ecopoints;
+  ecoPoints;
 
   /**
    * Creates a new User instance.
@@ -44,13 +44,13 @@ export class User {
     this.email = email;
     this.name = name;
     this.createdDate = new Date(); // Save as a Date object
-    this.data = {
+    this.ecoData = {
       ecoActions: [],
       challenges: [],
       achievements: [],
       friends: [],
     };
-    this.ecopoints = 0;
+    this.ecoPoints = 0;
     this.saveToLocalStorage();
   }
 
@@ -62,8 +62,8 @@ export class User {
       createdDate: this.createdDate.toISOString(), // Save as an ISO string
       email: this.email,
       name: this.name,
-      data: this.data,
-      ecopoints: this.ecopoints,
+      ecoData: this.ecoData,
+      ecoPoints: this.ecoPoints,
     };
     localStorage.setItem("user", JSON.stringify(userData));
   }
@@ -127,7 +127,7 @@ export class User {
 
   /**
    * Creates a User instance from a JSON file uploaded via a form.
-   * The JSON file must contain valid user data, including email, name, and data fields.
+   * The JSON file must contain valid user data, including email, name, and ecoData fields.
    * @param {HTMLFormElement} form - The form element containing the file input.
    * @returns {Promise<User>} - A promise that resolves to a User instance.
    */
@@ -141,7 +141,7 @@ export class User {
     const userData = JSON.parse(fileContent);
 
     // Validate the JSON structure
-    if (!userData.email || !userData.name || !userData.data) {
+    if (!userData.email || !userData.name || !userData.ecoData) {
       throw new Error("Invalid user data format.");
     }
 
@@ -151,8 +151,8 @@ export class User {
       name: userData.name,
     });
     user.createdDate = new Date(userData.createdDate);
-    user.data = userData.data;
-    user.ecopoints = userData.ecopoints;
+    user.ecoData = userData.ecoData;
+    user.ecoPoints = userData.ecoPoints;
 
     // Save the user to localStorage
     user.saveToLocalStorage();
@@ -169,8 +169,7 @@ export class User {
    * Reloads the page to reset the UI to the logged-out state.
    */
   static logout() {
-    const confirmation = confirm("Are you sure you want to log out?");
-    if (confirmation) {
+    if (confirm("Are you sure you want to log out?")) {
       // Remove the user data from localStorage
       localStorage.removeItem("user");
 
@@ -180,6 +179,24 @@ export class User {
       // Reset the UI to the logged-out state
       location.reload();
     }
+  }
+
+  /**
+   * Retrieves the user data from localStorage.
+   * @returns {Object} - The user data object.
+   */
+  static getUser() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    return user;
+  }
+
+  /**
+   * Updates the user in localStorage.
+   * @param {Object} updated - The updated user object.
+   */
+  static updateUser(updated) {
+    localStorage.setItem("user", JSON.stringify(updated));
+    console.log("User data updated successfully:", updated);
   }
 }
 

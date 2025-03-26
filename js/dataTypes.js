@@ -21,13 +21,7 @@ export class EcoAction {
    * @param {number} change - The change in the number of ecoActions (positive for addition, negative for deletion).
    */
   static updateEcopoints(change) {
-    // Retrieve the user data from localStorage
-    const userData = JSON.parse(localStorage.getItem("user"));
-
-    if (!userData) {
-      console.warn("No user is logged in. Cannot update ecopoints.");
-      return;
-    }
+    const userData = User.getUser();
 
     // Update the user's ecopoints
     userData.ecopoints = (userData.ecopoints || 0) + change * 5;
@@ -38,18 +32,16 @@ export class EcoAction {
     }
 
     // Save the updated user data back to localStorage
-    localStorage.setItem("user", JSON.stringify(userData));
+    User.updateUser(userData);
 
-    // Notify the user
     console.log(`User's ecopoints updated to: ${userData.ecopoints}`);
   }
 
   /**
-   * Adds an eco action to the user's data in localStorage.
+   * Adds an eco action to the user's data.
    * @param {HTMLElement} form - The form element containing eco action input.
    */
   static add(form) {
-    // Extract form data
     const date = form.querySelector("input[name='log-date-input']").value;
     const action = form
       .querySelector("input[name='log-action-input']")
@@ -58,35 +50,30 @@ export class EcoAction {
       .querySelector("input[name='log-impact-input']")
       .value.trim();
 
-    // Retrieve the user data from localStorage
-    const userData = JSON.parse(localStorage.getItem("user"));
-    if (!userData) {
-      alert("No user is logged in. Please log in to add an eco action.");
-    } else {
-      // Create a new EcoAction instance
-      const ecoAction = new EcoAction(new Date(date), action, impact);
+    const userData = User.getUser();
 
-      // Add the eco action to the user's data
-      userData.data.ecoActions = userData.data.ecoActions || [];
-      userData.data.ecoActions.push(ecoAction);
+    // Create a new EcoAction instance
+    const ecoAction = new EcoAction(new Date(date), action, impact);
 
-      // Save the updated user data back to localStorage
-      localStorage.setItem("user", JSON.stringify(userData));
+    // Add the eco action to the user's data
+    userData.data.ecoActions = userData.data.ecoActions || [];
+    userData.data.ecoActions.push(ecoAction);
 
-      // Update ecopoints
-      EcoAction.updateEcopoints(1);
+    // Save the updated user data back to localStorage
+    User.updateUser(userData);
 
-      // Notify the user
-      alert("Eco action added successfully!");
-    }
+    // Update ecopoints
+    EcoAction.updateEcopoints(1);
+
+    alert("Eco action added successfully!");
   }
 
   /**
-   * Deletes an EcoAction from the user's data in localStorage and updates the table.
+   * Deletes an EcoAction from the user's data and updates the table.
    * @param {number} index - The index of the EcoAction to delete.
    */
   static delete(index) {
-    const userData = JSON.parse(localStorage.getItem("user"));
+    const userData = User.getUser();
 
     if (!userData || !userData.data.ecoActions) {
       console.warn("No EcoActions found for the user.");
@@ -97,7 +84,7 @@ export class EcoAction {
     userData.data.ecoActions.splice(index, 1);
 
     // Save the updated user data back to localStorage
-    localStorage.setItem("user", JSON.stringify(userData));
+    User.updateUser(userData);
 
     // Update ecopoints
     EcoAction.updateEcopoints(-1);
@@ -105,7 +92,6 @@ export class EcoAction {
     // Update the table
     UIManager.updateEcoTrackerTable(userData.data.ecoActions);
 
-    // Notify the user
     alert("Eco action deleted successfully!");
   }
 }
