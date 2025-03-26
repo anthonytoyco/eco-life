@@ -56,18 +56,23 @@ header {
   display: none;
 }
 #menu-toggle:checked ~ #menu-container #menu {
-  max-height: 50vh;
+  max-height: 400px;
+}
+#menu a:link,
+#menu a:visited {
+  text-decoration: none;
+  padding: 0px 15px;
 }
 .nav-page {
   color: var(--color-primary);
   display: block;
   text-align: center;
+  transition: text-decoration 0.3s ease, color 0.3s ease;
 }
-#menu a:link,
-#menu a:visited {
-  color: var(--color-text);
-  text-decoration: none;
-  padding: 0px 15px;
+.nav-page:hover,
+.nav-page:active {
+  color: var(--color-accent);
+  text-decoration: underline;
 }
 
 /* Greeting */

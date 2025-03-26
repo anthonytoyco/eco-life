@@ -122,8 +122,10 @@ section li {
   border: none;
   border-radius: 10px;
   text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-.action-call a:hover {
+.action-call a:hover,
+.action-call a:active {
   background-color: var(--color-accent);
   color: var(--color-text);
 }
@@ -165,6 +167,7 @@ section li {
   border: 2px solid var(--color-accent);
   border-radius: 10px;
   background-color: var(--color-background);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 .forms input[type="submit"],
 .forms input[type="date"],
@@ -174,7 +177,9 @@ section li {
   cursor: pointer;
 }
 .forms input[type="submit"]:hover,
-.forms button:hover {
+.forms input[type="submit"]:active,
+.forms button:hover,
+.forms button:active {
   background-color: var(--color-accent);
 }
 form .error-message {
@@ -284,8 +289,10 @@ tr:last-child td:last-child {
   background-color: var(--color-primary);
   border: 2px solid var(--color-accent);
   border-radius: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-.ui-button:hover {
+.ui-button:hover,
+.ui-button:active {
   background-color: var(--color-accent);
   color: var(--color-text);
 }
