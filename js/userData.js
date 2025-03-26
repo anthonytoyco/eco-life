@@ -43,7 +43,8 @@ export class User {
     }
     this.email = email;
     this.name = name;
-    this.createdDate = new Date(); // Save as a Date object
+    // Save as a Date object
+    this.createdDate = new Date();
     this.ecoData = {
       ecoActions: [],
       challenges: [],
@@ -59,7 +60,8 @@ export class User {
    */
   saveToLocalStorage() {
     const userData = {
-      createdDate: this.createdDate.toISOString(), // Save as an ISO string
+      // Save as an ISO string
+      createdDate: this.createdDate.toISOString(),
       email: this.email,
       name: this.name,
       ecoData: this.ecoData,
@@ -73,8 +75,8 @@ export class User {
    * The file name includes the user's email and the date and time of export.
    */
   static exportUser() {
-    // Retrieve user data from localStorage
-    const userData = JSON.parse(localStorage.getItem("user"));
+    // Use getUser to retrieve user data
+    const userData = this.getUser();
 
     // Convert the user data to a JSON string
     const jsonData = JSON.stringify(userData, null, 2);
@@ -93,7 +95,8 @@ export class User {
         second: "2-digit",
         hour12: false,
       })
-      .replace(/:/g, "-"); // Replace colons with dashes for file name compatibility
+      // Replace colons with dashes for file name compatibility
+      .replace(/:/g, "-");
 
     // Create the file name
     const fileName = `Eco-Life_${userData.email}_${formattedDate}_${formattedTime}.json`;
@@ -107,7 +110,6 @@ export class User {
     a.click();
     document.body.removeChild(a);
 
-    // Alert user
     console.log("User exported successfully:", userData);
     alert("User exported successfully!");
   }
@@ -132,20 +134,16 @@ export class User {
    * @returns {Promise<User>} - A promise that resolves to a User instance.
    */
   static async importUser(form) {
-    // Get the file input element and retrieve the selected file
     const fileInput = form.querySelector("input[name='json-input']");
     const file = fileInput.files[0];
 
-    // Read the file content
     const fileContent = await file.text();
     const userData = JSON.parse(fileContent);
 
-    // Validate the JSON structure
     if (!userData.email || !userData.name || !userData.ecoData) {
       throw new Error("Invalid user data format.");
     }
 
-    // Create a new User instance
     const user = new User({
       email: userData.email,
       name: userData.name,
@@ -154,10 +152,9 @@ export class User {
     user.ecoData = userData.ecoData;
     user.ecoPoints = userData.ecoPoints;
 
-    // Save the user to localStorage
-    user.saveToLocalStorage();
+    // Use updateUser to save the imported user
+    this.setUser(user);
 
-    // Alert user
     console.log("User imported successfully:", user);
     alert("User imported successfully!");
 
@@ -170,13 +167,10 @@ export class User {
    */
   static logout() {
     if (confirm("Are you sure you want to log out?")) {
-      // Remove the user data from localStorage
+      // Clear user data from localStorage
       localStorage.removeItem("user");
-
-      // Alert user
       alert("You have been logged out.");
-
-      // Reset the UI to the logged-out state
+      // Reload the page to reset the UI
       location.reload();
     }
   }
@@ -194,7 +188,7 @@ export class User {
    * Updates the user in localStorage.
    * @param {Object} updated - The updated user object.
    */
-  static updateUser(updated) {
+  static setUser(updated) {
     localStorage.setItem("user", JSON.stringify(updated));
     console.log("User data updated successfully:", updated);
   }

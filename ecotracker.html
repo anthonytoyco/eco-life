@@ -32,7 +32,6 @@
         <a href="ecotracker.html"><span class="nav-page">Eco Tracker</span></a>
         <a href="challenges.html"><span class="nav-page">Challenges</span></a>
         <a href="achievements.html"><span class="nav-page">Achievements</span></a>
-        <a href="leaderboard.html"><span class="nav-page">Leaderboard</span></a>
         <a href="contact.html"><span class="nav-page">Contact</span></a>
         <a href="profile.html"><span class="nav-page">Profile</span></a>
       </nav>
@@ -75,22 +74,10 @@
         <table id="ecotracker-table">
           <thead>
             <tr>
-              <th>
-                Date Added<br><br>
-                <button class="sort-button" data-column="createdDate" data-order="asc">Sort</button>
-              </th>
-              <th>
-                Date Completed<br><br>
-                <button class="sort-button" data-column="date" data-order="asc">Sort</button>
-              </th>
-              <th>
-                Action<br><br>
-                <button class="sort-button" data-column="action" data-order="asc">Sort</button>
-              </th>
-              <th>
-                Impact<br><br>
-                <button class="sort-button" data-column="impact" data-order="asc">Sort</button>
-              </th>
+              <th>Date Added</th>
+              <th>Date Completed</th>
+              <th>Action</th>
+              <th>Impact</th>
               <th></th>
             </tr>
           </thead>
@@ -117,11 +104,12 @@
 
   <footer>
     <div id="updates">
-      <form>
+      <form id="subscription-form">
         <label id="updates-label" class="footer-titles" for="updates-email">Stay Updated</label><br>
         <div>
           <input id="updates-email" name="updates-email" type="email" placeholder="Email" required>
-          <input id="updates-submit" name="updates-submit" type="submit" value="SUBSCRIBE">
+          <button id="updates-submit" name="updates-submit" type="button"
+            onclick="Form.handleSubscriptionForm()">SUBSCRIBE</button>
         </div>
       </form>
       <a id="github-link" href="https://github.com/anthonytoyco/eco-life">

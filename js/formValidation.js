@@ -185,6 +185,10 @@ export class Form {
           this.resetForm();
           UIManager.update();
           break;
+        case "message-form":
+          alert("Your message has been sent!");
+          this.resetForm();
+          break;
       }
     }
   }
@@ -202,6 +206,40 @@ export class Form {
       }
     });
   }
+
+  /**
+   * Handles the subscription form validation and submission.
+   */
+  static handleSubscriptionForm() {
+    const form = document.getElementById("subscription-form");
+    const emailInput = document.getElementById("updates-email");
+    const email = emailInput.value.trim();
+
+    // Clear previous error messages
+    const existingError = form.querySelector(".subscription-error");
+    if (existingError) {
+      existingError.remove();
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      // Display error message
+      const error = document.createElement("div");
+      error.className = "subscription-error";
+      error.style.border = "none";
+      error.style.whiteSpace = "pre";
+      error.style.color = "#ff0033";
+      error.innerText = "test";
+      error.textContent = "Please enter a valid email address.    ";
+      emailInput.insertAdjacentElement("afterend", error);
+      return;
+    }
+
+    // Simulate subscription success
+    alert("You have been successfully subscribed to our updates!");
+
+    // Reset the form
+    emailInput.value = "";
+  }
 }
 
 // Generates a Form instance for each form element
@@ -211,3 +249,5 @@ document.addEventListener("DOMContentLoaded", () => {
     const formInstance = new Form(formElement);
   });
 });
+
+window.Form = Form;

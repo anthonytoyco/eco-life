@@ -187,12 +187,13 @@ form .error-message {
   color: var(--color-error);
   padding: 0px 0px 30px;
 }
-/* Form Buttons */
+/* Form buttons and challenges select */
 .delete-button-td {
   text-align: center;
 }
 .sort-button,
-.delete-button {
+.delete-button,
+.challenge-status {
   cursor: pointer;
   padding: 10px;
   font-size: 0.8rem;
@@ -266,10 +267,27 @@ tr:last-child td:last-child {
   color: var(--color-accent);
   font-weight: bold;
 }
+/* Tables: Challenges */
+.challenge-status-td {
+  text-align: center;
+}
+/* Tables: Achievements */
+.achievement-badge {
+  font-family: var(--font-family-playfair);
+  font-style: italic;
+  font-weight: bold;
+}
+.achievement-checkbox-td {
+  text-align: center;
+}
+.achievement-checkbox {
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+}
 
 /* Devs section */
 #contact-devs {
-  max-width: 700px;
   margin: auto;
   display: flex;
   align-items: center;

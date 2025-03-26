@@ -32,7 +32,6 @@
         <a href="ecotracker.html"><span class="nav-page">Eco Tracker</span></a>
         <a href="challenges.html"><span class="nav-page">Challenges</span></a>
         <a href="achievements.html"><span class="nav-page">Achievements</span></a>
-        <a href="leaderboard.html"><span class="nav-page">Leaderboard</span></a>
         <a href="contact.html"><span class="nav-page">Contact</span></a>
         <a href="profile.html"><span class="nav-page">Profile</span></a>
       </nav>
@@ -138,11 +137,12 @@
 
   <footer>
     <div id="updates">
-      <form>
+      <form id="subscription-form">
         <label id="updates-label" class="footer-titles" for="updates-email">Stay Updated</label><br>
         <div>
           <input id="updates-email" name="updates-email" type="email" placeholder="Email" required>
-          <input id="updates-submit" name="updates-submit" type="submit" value="SUBSCRIBE">
+          <button id="updates-submit" name="updates-submit" type="button"
+            onclick="Form.handleSubscriptionForm()">SUBSCRIBE</button>
         </div>
       </form>
       <a id="github-link" href="https://github.com/anthonytoyco/eco-life">
@@ -156,7 +156,8 @@
       <ul>
         <li>
           <p>
-            <cite><a href="https://unsplash.com/photos/six-assorted-color-mail-boxes-fb7yNPbT0l8"> Six assorted-color
+            <cite><a href="https://unsplash.com/photos/six-assorted-color-mail-boxes-fb7yNPbT0l8"> Six
+                assorted-color
                 mail boxes</a></cite> by <a href="https://unsplash.com/@mathyaskurmann" target="_blank">Mathyas
               Kurmann</a> from Unsplash.
           </p>

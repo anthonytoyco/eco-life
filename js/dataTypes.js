@@ -35,7 +35,7 @@ export class EcoAction {
     }
 
     // Save the updated user data back to localStorage
-    User.updateUser(userData);
+    User.setUser(userData);
 
     console.log(`User's ecoPoints updated to: ${userData.ecoPoints}`);
   }
@@ -63,7 +63,7 @@ export class EcoAction {
     userData.ecoData.ecoActions.push(ecoAction);
 
     // Save the updated user data back to localStorage
-    User.updateUser(userData);
+    User.setUser(userData);
 
     // Update ecoPoints
     EcoAction.updateEcoPoints(1);
@@ -90,7 +90,7 @@ export class EcoAction {
     userData.ecoData.ecoActions.splice(index, 1);
 
     // Save the updated user data back to localStorage
-    User.updateUser(userData);
+    User.setUser(userData);
 
     // Update ecoPoints
     EcoAction.updateEcoPoints(-1);
@@ -106,16 +106,58 @@ export class Challenge {
   /**
    * Creates a new Challenge instance.
    * @param {string} name - The name of the challenge.
-   * @param {string} status - The status of the challenge (e.g., "Completed", "In Progress").
-   * @param {string} reward - The reward for completing the challenge.
-   * @param {Date|string} dateAchieved - The date the challenge was achieved.
+   * @param {number} reward - The reward points for completing the challenge.
+   * @param {string} status - The status of the challenge (default: "Not Started").
+   * @param {Date|string|null} dateCompleted - The date the challenge was completed (default: null).
    */
-  constructor(name, status, reward, dateAchieved) {
+  constructor(name, reward, status = "Not Started", dateCompleted = null) {
     this.name = name;
-    this.status = status;
     this.reward = reward;
-    this.dateAchieved =
-      dateAchieved instanceof Date ? dateAchieved : new Date(dateAchieved);
+    this.status = status;
+    this.dateCompleted =
+      dateCompleted instanceof Date
+        ? dateCompleted
+        : dateCompleted
+        ? new Date(dateCompleted)
+        : null;
+  }
+
+  /**
+   * Updates the status of the challenge.
+   * If the status is set to "Completed," sets the dateCompleted to the current date.
+   * Updates the user's ecoData and ecoPoints in localStorage.
+   * @param {string} newStatus - The new status of the challenge.
+   * @param {number} index - The index of the challenge in the user's ecoData.
+   */
+  static updateStatus(newStatus, index) {
+    // Retrieve user data from localStorage
+    const userData = JSON.parse(localStorage.getItem("user"));
+
+    if (!userData || !userData.ecoData || !userData.ecoData.challenges) {
+      console.error("User data or challenges not found in localStorage.");
+      return;
+    }
+
+    const challenge = userData.ecoData.challenges[index];
+
+    // Update the challenge status
+    challenge.status = newStatus;
+
+    if (newStatus === "Completed" && !challenge.dateCompleted) {
+      challenge.dateCompleted = new Date();
+
+      // Update ecoPoints
+      userData.ecoPoints = (userData.ecoPoints || 0) + challenge.reward;
+    } else if (newStatus !== "Completed") {
+      challenge.dateCompleted = null;
+    }
+
+    // Save the updated user data back to localStorage
+    localStorage.setItem("user", JSON.stringify(userData));
+
+    console.log(
+      `Challenge updated: ${challenge.name}. Status: ${challenge.status}. EcoPoints: ${userData.ecoPoints}`
+    );
   }
 }
 
@@ -124,26 +166,11 @@ export class Achievement {
    * Creates a new Achievement instance.
    * @param {string} badge - The badge associated with the achievement.
    * @param {string} description - The description of the achievement.
-   * @param {Date|string} dateAchieved - The date the achievement was earned.
+   * @param {boolean} completed - Whether the achievement is completed (default: false).
    */
-  constructor(badge, description, dateAchieved) {
+  constructor(badge, description, completed = false) {
     this.badge = badge;
     this.description = description;
-    this.dateAchieved =
-      dateAchieved instanceof Date ? dateAchieved : new Date(dateAchieved);
-  }
-}
-
-export class Friend {
-  /**
-   * Creates a new Friend instance.
-   * @param {string} name - The name of the friend.
-   * @param {number} points - The total ecoPoints of the friend.
-   * @param {number} rank - The rank of the friend on the leaderboard.
-   */
-  constructor(name, points, rank) {
-    this.name = name;
-    this.points = points;
-    this.rank = rank;
+    this.completed = completed;
   }
 }

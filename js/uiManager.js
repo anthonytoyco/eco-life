@@ -1,6 +1,6 @@
 "use strict";
 
-import { EcoAction } from "./dataTypes.js";
+import { EcoAction, Challenge, Achievement } from "./dataTypes.js";
 import { User } from "./userData.js";
 
 export class UIManager {
@@ -142,82 +142,206 @@ export class UIManager {
   }
 
   /**
-   * Initializes event listeners for sort buttons in the EcoTracker table.
+   * Updates the Challenges table with the user's challenges.
    */
-  static initializeSortButtons() {
-    const ecoActions = User.getUser()?.ecoData?.ecoActions || [];
+  static updateChallengesTable() {
+    const userData = JSON.parse(localStorage.getItem("user"));
 
-    document.querySelectorAll(".sort-button").forEach((button) => {
-      // Remove any existing event listeners to prevent duplication
-      button.replaceWith(button.cloneNode(true));
-      const newButton = document.querySelector(
-        `[data-column="${button.getAttribute("data-column")}"]`
-      );
+    // Ensure challenges exist in user data
+    if (
+      !userData.ecoData.challenges ||
+      userData.ecoData.challenges.length === 0
+    ) {
+      userData.ecoData.challenges = [
+        new Challenge("Use a reusable water bottle", 50),
+        new Challenge("Cycle instead of driving", 30),
+        new Challenge("Plant a tree", 100),
+        new Challenge("Switch to LED bulbs", 20),
+        new Challenge("Take a shorter shower", 10),
+        new Challenge("Compost food waste", 40),
+        new Challenge("Use public transport for a week", 70),
+        new Challenge("Avoid single-use plastics for a day", 25),
+        new Challenge("Donate old clothes", 50),
+        new Challenge("Participate in a community cleanup", 80),
+        new Challenge("Unplug unused electronics", 15),
+        new Challenge("Carpool with friends", 35),
+        new Challenge("Start a home garden", 90),
+        new Challenge("Switch to paperless billing", 20),
+        new Challenge("Use a clothesline instead of a dryer", 30),
+      ];
 
-      newButton.addEventListener("click", () => {
-        const column = newButton.getAttribute("data-column");
-        const currentOrder = newButton.getAttribute("data-order");
-        const newOrder = currentOrder === "asc" ? "desc" : "asc";
+      // Save initial challenges to localStorage
+      localStorage.setItem("user", JSON.stringify(userData));
+    }
 
-        // Update the button's data-order attribute
-        newButton.setAttribute("data-order", newOrder);
+    const challenges = userData.ecoData.challenges;
 
-        // Sort the table
-        UIManager.sortEcoTrackerTable(ecoActions, column, newOrder);
+    // Populate the table
+    const tableBody = document.getElementById("challenges-table-body");
+    tableBody.innerHTML = challenges
+      .map(
+        (challenge, index) => `
+        <tr>
+          <td>${challenge.name}</td>
+          <td>+${challenge.reward} Points</td>
+          <td class="challenge-status-td">
+            <select class="challenge-status" data-index="${index}">
+              <option value="Not Started" ${
+                challenge.status === "Not Started" ? "selected" : ""
+              }>❌❌❌</option>
+              <option value="In Progress" ${
+                challenge.status === "In Progress" ? "selected" : ""
+              }>🕒🕒🕒</option>
+              <option value="Completed" ${
+                challenge.status === "Completed" ? "selected" : ""
+              }>✅✅✅</option>
+            </select>
+          </td>
+          <td>${
+            challenge.dateCompleted
+              ? new Date(challenge.dateCompleted).toLocaleDateString("en-US")
+              : "---"
+          }</td>
+        </tr>`
+      )
+      .join("");
+
+    // Add event listeners for status changes
+    document.querySelectorAll(".challenge-status").forEach((select) => {
+      select.addEventListener("change", (event) => {
+        const index = event.target.getAttribute("data-index");
+        const newStatus = event.target.value;
+
+        // Update the challenge status in localStorage
+        Challenge.updateStatus(newStatus, index);
+
+        // Refresh the table
+        UIManager.updateChallengesTable();
       });
     });
   }
 
   /**
-   * Sorts the EcoTracker table based on the specified column and order.
-   * Updates the sorting buttons dynamically.
-   * @param {Array<Object>} ecoActions - The array of ecoActions to sort.
-   * @param {string} column - The column to sort by (e.g., "createdDate", "date", "action", "impact").
-   * @param {string} order - The sort order ("asc" for ascending, "desc" for descending).
+   * Updates the Achievements table with the user's achievements.
    */
-  static sortEcoTrackerTable(ecoActions, column, order) {
-    const sortedActions = ecoActions.sort((a, b) => {
-      if (column === "createdDate" || column === "date") {
-        // Sort by date
-        const dateA = new Date(a[column]);
-        const dateB = new Date(b[column]);
-        return order === "asc" ? dateA - dateB : dateB - dateA;
-      } else {
-        // Sort by string (action or impact)
-        const valueA = a[column].toLowerCase();
-        const valueB = b[column].toLowerCase();
-        if (valueA < valueB) return order === "asc" ? -1 : 1;
-        if (valueA > valueB) return order === "asc" ? 1 : -1;
-        return 0;
-      }
-    });
+  static updateAchievementsTable() {
+    const userData = JSON.parse(localStorage.getItem("user"));
 
-    // Update the table with the sorted data
-    this.updateEcoTrackerTable(sortedActions);
+    // Ensure achievements exist in user data
+    if (
+      !userData.ecoData.achievements ||
+      userData.ecoData.achievements.length === 0
+    ) {
+      userData.ecoData.achievements = [
+        new Achievement(
+          "🥉 Challenge Beginner",
+          "Complete 5 challenges to earn this badge."
+        ),
+        new Achievement(
+          "🥈 Challenge Enthusiast",
+          "Complete 10 challenges to earn this badge."
+        ),
+        new Achievement(
+          "🥇 Challenge Master",
+          "Complete 20 challenges to earn this badge."
+        ),
+        new Achievement(
+          "🪴 Eco-Action Rookie",
+          "Log 5 eco-actions to earn this badge."
+        ),
+        new Achievement(
+          "🌿 Eco-Action Explorer",
+          "Log 10 eco-actions to earn this badge."
+        ),
+        new Achievement(
+          "🌱 Eco-Action Pro",
+          "Log 20 eco-actions to earn this badge."
+        ),
+        new Achievement(
+          "💯 EcoPoints Collector",
+          "Earn 100 ecoPoints to earn this badge."
+        ),
+        new Achievement(
+          "💰 EcoPoints Saver",
+          "Earn 500 ecoPoints to earn this badge."
+        ),
+        new Achievement(
+          "🏆 EcoPoints Champion",
+          "Earn 1000 ecoPoints to earn this badge."
+        ),
+        new Achievement(
+          "🚰 Hydration Hero",
+          "Use a reusable water bottle for 30 days."
+        ),
+        new Achievement("🌳 Tree Planter", "Plant 5 trees to earn this badge."),
+        new Achievement(
+          "🚫 Plastic-Free Week",
+          "Avoid single-use plastics for 7 days."
+        ),
+        new Achievement(
+          "🚌 Transit Tracker",
+          "Take public transport for 30 days."
+        ),
+        new Achievement(
+          "🍃 Meatless Mission",
+          "Eat plant-based meals for 7 days."
+        ),
+        new Achievement(
+          "♻️ Recycling Regular",
+          "Log recycling actions 10 times."
+        ),
+      ];
 
-    // Update sorting buttons
-    this.updateSortButtons(column, order);
-  }
+      // Save initial achievements to localStorage
+      localStorage.setItem("user", JSON.stringify(userData));
+    }
 
-  /**
-   * Updates the sorting buttons to reflect the current sorting state.
-   * @param {string} activeColumn - The column currently being sorted.
-   * @param {string} order - The sort order ("asc" or "desc").
-   */
-  static updateSortButtons(activeColumn, order) {
-    document.querySelectorAll(".sort-button").forEach((button) => {
-      const column = button.getAttribute("data-column");
+    const achievements = userData.ecoData.achievements;
 
-      if (column === activeColumn) {
-        button.textContent = order === "asc" ? "▲" : "▼";
-        button.style.backgroundColor = "var(--color-accent)";
-        button.style.color = "var(--color-background)";
-      } else {
-        button.textContent = "Sort";
-        button.setAttribute("data-order", "asc");
-        button.style.backgroundColor = "";
-        button.style.color = "";
-      }
+    // Populate the table
+    const tableBody = document.getElementById("achievements-table-body");
+    tableBody.innerHTML = achievements
+      .map(
+        (achievement, index) => `
+        <tr class="${achievement.completed ? "completed-row" : ""}">
+          <td class="achievement-badge">${achievement.badge}</td>
+          <td>${achievement.description}</td>
+          <td class="achievement-checkbox-td">
+            <input type="checkbox" class="achievement-checkbox" data-index="${index}" ${
+          achievement.completed ? "checked disabled" : ""
+        }>
+          </td>
+        </tr>`
+      )
+      .join("");
+
+    // Add event listeners for checkboxes
+    document.querySelectorAll(".achievement-checkbox").forEach((checkbox) => {
+      checkbox.addEventListener("change", (event) => {
+        const index = event.target.getAttribute("data-index");
+
+        // Show confirmation dialog
+        const confirmCompletion = confirm(
+          "Are you sure you want to mark this achievement as completed? You will gain +100 ecoPoints."
+        );
+
+        if (confirmCompletion) {
+          // Mark the achievement as completed
+          achievements[index].completed = true;
+
+          // Add 100 ecoPoints
+          userData.ecoPoints = (userData.ecoPoints || 0) + 100;
+
+          // Save updated user data
+          localStorage.setItem("user", JSON.stringify(userData));
+
+          // Refresh the table
+          UIManager.updateAchievementsTable();
+        } else {
+          // If the user cancels, uncheck the checkbox
+          event.target.checked = false;
+        }
+      });
     });
   }
 
@@ -262,16 +386,25 @@ export class UIManager {
   }
 }
 
-// Call this method in the appropriate place
+// Eco-Tracker table handler
 document.addEventListener("DOMContentLoaded", () => {
-  if (window.location.pathname.endsWith("ecotracker.html")) {
-    const ecoActions = User.getUser()?.ecoData?.ecoActions || [];
+  if (window.location.pathname.endsWith("ecotracker.html" && User.getUser())) {
+    UIManager.updateEcoTrackerTable(User.getUser()?.ecoData?.ecoActions || []);
+  }
+});
 
-    // Default sorting by "Date Added" (createdDate) in ascending order
-    UIManager.sortEcoTrackerTable(ecoActions, "createdDate", "asc");
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.location.pathname.endsWith("challenges.html") && User.getUser()) {
+    UIManager.updateChallengesTable();
+  }
+});
 
-    // Initialize sort button event listeners
-    UIManager.initializeSortButtons();
+document.addEventListener("DOMContentLoaded", () => {
+  if (
+    window.location.pathname.endsWith("achievements.html") &&
+    User.getUser()
+  ) {
+    UIManager.updateAchievementsTable();
   }
 });
 

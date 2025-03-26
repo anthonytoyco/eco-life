@@ -31,7 +31,6 @@
         <a href="ecotracker.html"><span class="nav-page">Eco Tracker</span></a>
         <a href="challenges.html"><span class="nav-page">Challenges</span></a>
         <a href="achievements.html"><span class="nav-page">Achievements</span></a>
-        <a href="leaderboard.html"><span class="nav-page">Leaderboard</span></a>
         <a href="contact.html"><span class="nav-page">Contact</span></a>
         <a href="profile.html"><span class="nav-page">Profile</span></a>
       </nav>
@@ -56,15 +55,15 @@
     <section id="achievements-table">
       <h2>Your Achievements</h2>
       <div class="table-wrapper">
-        <table>
+        <table class="achievements">
           <thead>
             <tr>
               <th>Badge</th>
               <th>Achievement</th>
-              <th>Date Achieved</th>
+              <th>Completed</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="achievements-table-body">
             <tr>
               <td>🏅</td>
               <td><strong><em>Eco Ready</em></strong> - Logged in for the first time</td>
@@ -84,21 +83,16 @@
         </table>
       </div>
     </section>
-
-    <section id="progress">
-      <h2>Progress</h2>
-      <p>Current Streak: <strong id="streak">5 days</strong></p>
-      <p>Total Points: <strong id="points">250</strong></p>
-    </section>
   </main>
 
   <footer>
     <div id="updates">
-      <form>
+      <form id="subscription-form">
         <label id="updates-label" class="footer-titles" for="updates-email">Stay Updated</label><br>
         <div>
           <input id="updates-email" name="updates-email" type="email" placeholder="Email" required>
-          <input id="updates-submit" name="updates-submit" type="submit" value="SUBSCRIBE">
+          <button id="updates-submit" name="updates-submit" type="button"
+            onclick="Form.handleSubscriptionForm()">SUBSCRIBE</button>
         </div>
       </form>
       <a id="github-link" href="https://github.com/anthonytoyco/eco-life">
@@ -112,7 +106,8 @@
       <ul>
         <li>
           <p>
-            <cite><a href="https://unsplash.com/photos/person-showing-thumb-4Vg6ez9jaec">Person showing thumb</a></cite>
+            <cite><a href="https://unsplash.com/photos/person-showing-thumb-4Vg6ez9jaec">Person showing
+                thumb</a></cite>
             by <a href="https://unsplash.com/@katya" target="_blank">Katya Ross</a> from Unsplash.
           </p>
         </li>
