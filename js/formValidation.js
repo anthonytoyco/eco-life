@@ -1,8 +1,8 @@
 "use strict";
 
-import { User } from "./userData.js";
-import { UIManager } from "./uiManager.js";
 import { EcoAction } from "./dataTypes.js";
+import { UIManager } from "./uiManager.js";
+import { User } from "./userData.js";
 
 /**
  * Represents an HTML form element.

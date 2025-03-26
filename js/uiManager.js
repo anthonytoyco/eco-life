@@ -15,6 +15,9 @@ export class UIManager {
       // Update the greeting message
       this.updateElement("greeting", `<i>Hello, ${userData.name}</i>`);
 
+      // Animate the greeting
+      this.animateGreeting();
+
       // Only runs in the profile page
       if (window.location.pathname.endsWith("profile.html")) {
         // Hide the auth forms
@@ -64,6 +67,27 @@ export class UIManager {
   }
 
   /**
+   * Animates the greeting text by scrolling it horizontally.
+   */
+  static animateGreeting() {
+    const greetingElement = document.getElementById("greeting");
+    if (!greetingElement) {
+      console.warn("Greeting element not found.");
+      return;
+    }
+
+    let position = 0;
+    const text = greetingElement.innerText + "      ";
+    const scrollSpeed = 150;
+
+    setInterval(() => {
+      position = (position + 1) % text.length;
+      greetingElement.innerText =
+        text.slice(position) + text.slice(0, position);
+    }, scrollSpeed);
+  }
+
+  /**
    * Updates the EcoTracker table with the user's ecoActions.
    * @param {Array<Object>} ecoActions - The array of ecoActions to display.
    */
@@ -81,23 +105,23 @@ export class UIManager {
         .querySelectorAll("thead th").length;
 
       emptyRow.innerHTML = `
-        <td colspan="${columnCount}" style="text-align: center; font-style: italic; color: var(--color-accent); font-weight: bold;">
+        <td colspan="${columnCount}" class="empty-row">
           Add some Eco-Actions!
         </td>
       `;
       tableBody.appendChild(emptyRow);
     } else {
       // Populate the table with ecoActions
-      ecoActions.forEach((action, index) => {
+      ecoActions.forEach((ecoaction, index) => {
         const row = document.createElement("tr");
         row.innerHTML = `
-          <td>${new Date(action.date).toLocaleDateString("en-US", {
+          <td>${new Date(ecoaction.date).toLocaleDateString("en-US", {
             month: "long",
             day: "numeric",
             year: "numeric",
           })}</td>
-          <td>${action.action}</td>
-          <td>${action.impact}</td>
+          <td>${ecoaction.action}</td>
+          <td>${ecoaction.impact}</td>
           <td><button class="delete-button" data-index="${index}">Delete</button></td>
         `;
 

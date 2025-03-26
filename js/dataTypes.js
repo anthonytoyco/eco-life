@@ -1,6 +1,7 @@
 "use strict";
 
 import { UIManager } from "./uiManager.js";
+import { User } from "./userData.js";
 
 export class EcoAction {
   /**
