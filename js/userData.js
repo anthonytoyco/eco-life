@@ -2,7 +2,7 @@
 
 /**
  * Represents an Eco-Life user.
- * This class manages user data, including email, name, eco actions, challenges, achievements, and eco-points.
+ * This class manages user data, including email, name, eco actions, challenges, achievements, and ecoPoints.
  * It also provides methods for saving, exporting, and importing user data.
  */
 export class User {

@@ -6,35 +6,38 @@ import { User } from "./userData.js";
 export class EcoAction {
   /**
    * Creates a new EcoAction instance.
+   * @param {Date|string} createdDate - The date the action was created.
    * @param {Date|string} date - The date the action was logged.
    * @param {string} action - The description of the action.
    * @param {string} impact - The impact of the action.
    */
-  constructor(date, action, impact) {
+  constructor(createdDate = new Date(), date, action, impact) {
+    this.createdDate =
+      createdDate instanceof Date ? createdDate : new Date(createdDate);
     this.date = date instanceof Date ? date : new Date(date);
     this.action = action;
     this.impact = impact;
   }
 
   /**
-   * Updates the user's ecopoints based on the modification of ecoActions.
+   * Updates the user's ecoPoints based on the modification of ecoActions.
    * @param {number} change - The change in the number of ecoActions (positive for addition, negative for deletion).
    */
-  static updateEcopoints(change) {
+  static updateEcoPoints(change) {
     const userData = User.getUser();
 
-    // Update the user's ecopoints
-    userData.ecopoints = (userData.ecopoints || 0) + change * 5;
+    // Update the user's ecoPoints
+    userData.ecoPoints = (userData.ecoPoints || 0) + change * 5;
 
-    // Ensure ecopoints do not go below zero
-    if (userData.ecopoints < 0) {
-      userData.ecopoints = 0;
+    // Ensure ecoPoints do not go below zero
+    if (userData.ecoPoints < 0) {
+      userData.ecoPoints = 0;
     }
 
     // Save the updated user data back to localStorage
     User.updateUser(userData);
 
-    console.log(`User's ecopoints updated to: ${userData.ecopoints}`);
+    console.log(`User's ecoPoints updated to: ${userData.ecoPoints}`);
   }
 
   /**
@@ -52,18 +55,21 @@ export class EcoAction {
 
     const userData = User.getUser();
 
-    // Create a new EcoAction instance
-    const ecoAction = new EcoAction(new Date(date), action, impact);
+    // Create a new EcoAction instance with the current date as createdDate
+    const ecoAction = new EcoAction(new Date(), new Date(date), action, impact);
 
     // Add the eco action to the user's data
-    userData.data.ecoActions = userData.data.ecoActions || [];
-    userData.data.ecoActions.push(ecoAction);
+    userData.ecoData.ecoActions = userData.ecoData.ecoActions || [];
+    userData.ecoData.ecoActions.push(ecoAction);
 
     // Save the updated user data back to localStorage
     User.updateUser(userData);
 
-    // Update ecopoints
-    EcoAction.updateEcopoints(1);
+    // Update ecoPoints
+    EcoAction.updateEcoPoints(1);
+
+    // Refresh the UI
+    UIManager.update();
 
     alert("Eco action added successfully!");
   }
@@ -75,22 +81,22 @@ export class EcoAction {
   static delete(index) {
     const userData = User.getUser();
 
-    if (!userData || !userData.data.ecoActions) {
+    if (!userData || !userData.ecoData.ecoActions) {
       console.warn("No EcoActions found for the user.");
       return;
     }
 
     // Remove the EcoAction at the specified index
-    userData.data.ecoActions.splice(index, 1);
+    userData.ecoData.ecoActions.splice(index, 1);
 
     // Save the updated user data back to localStorage
     User.updateUser(userData);
 
-    // Update ecopoints
-    EcoAction.updateEcopoints(-1);
+    // Update ecoPoints
+    EcoAction.updateEcoPoints(-1);
 
-    // Update the table
-    UIManager.updateEcoTrackerTable(userData.data.ecoActions);
+    // Refresh the UI
+    UIManager.update();
 
     alert("Eco action deleted successfully!");
   }
@@ -132,7 +138,7 @@ export class Friend {
   /**
    * Creates a new Friend instance.
    * @param {string} name - The name of the friend.
-   * @param {number} points - The total eco-points of the friend.
+   * @param {number} points - The total ecoPoints of the friend.
    * @param {number} rank - The rank of the friend on the leaderboard.
    */
   constructor(name, points, rank) {

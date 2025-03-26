@@ -56,13 +56,13 @@ export class UIManager {
         );
         this.updateElement(
           "profile-info-ecopoints",
-          `<p><strong>Eco-Points:</strong> ${userData.ecopoints}</p>`
+          `<p><strong>Eco-Points:</strong> ${userData.ecoPoints}</p>`
         );
       }
 
       // Update the EcoTracker table if on the ecotracker.html page
       if (window.location.pathname.endsWith("ecotracker.html")) {
-        this.updateEcoTrackerTable(userData.data.ecoActions || []);
+        this.updateEcoTrackerTable(userData.ecoData.ecoActions || []);
       }
     }
   }
@@ -113,17 +113,22 @@ export class UIManager {
       tableBody.appendChild(emptyRow);
     } else {
       // Populate the table with ecoActions
-      ecoActions.forEach((ecoaction, index) => {
+      ecoActions.forEach((ecoAction, index) => {
         const row = document.createElement("tr");
         row.innerHTML = `
-          <td>${new Date(ecoaction.date).toLocaleDateString("en-US", {
+          <td>${new Date(ecoAction.createdDate).toLocaleDateString("en-US", {
             month: "long",
             day: "numeric",
             year: "numeric",
           })}</td>
-          <td>${ecoaction.action}</td>
-          <td>${ecoaction.impact}</td>
-          <td><button class="delete-button" data-index="${index}">Delete</button></td>
+          <td>${new Date(ecoAction.date).toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          })}</td>
+          <td>${ecoAction.action}</td>
+          <td>${ecoAction.impact}</td>
+          <td class="delete-button-td"><button class="delete-button" data-index="${index}">Delete</button></td>
         `;
 
         // Add delete functionality to the button
@@ -134,6 +139,86 @@ export class UIManager {
         tableBody.appendChild(row);
       });
     }
+  }
+
+  /**
+   * Initializes event listeners for sort buttons in the EcoTracker table.
+   */
+  static initializeSortButtons() {
+    const ecoActions = User.getUser()?.ecoData?.ecoActions || [];
+
+    document.querySelectorAll(".sort-button").forEach((button) => {
+      // Remove any existing event listeners to prevent duplication
+      button.replaceWith(button.cloneNode(true));
+      const newButton = document.querySelector(
+        `[data-column="${button.getAttribute("data-column")}"]`
+      );
+
+      newButton.addEventListener("click", () => {
+        const column = newButton.getAttribute("data-column");
+        const currentOrder = newButton.getAttribute("data-order");
+        const newOrder = currentOrder === "asc" ? "desc" : "asc";
+
+        // Update the button's data-order attribute
+        newButton.setAttribute("data-order", newOrder);
+
+        // Sort the table
+        UIManager.sortEcoTrackerTable(ecoActions, column, newOrder);
+      });
+    });
+  }
+
+  /**
+   * Sorts the EcoTracker table based on the specified column and order.
+   * Updates the sorting buttons dynamically.
+   * @param {Array<Object>} ecoActions - The array of ecoActions to sort.
+   * @param {string} column - The column to sort by (e.g., "createdDate", "date", "action", "impact").
+   * @param {string} order - The sort order ("asc" for ascending, "desc" for descending).
+   */
+  static sortEcoTrackerTable(ecoActions, column, order) {
+    const sortedActions = ecoActions.sort((a, b) => {
+      if (column === "createdDate" || column === "date") {
+        // Sort by date
+        const dateA = new Date(a[column]);
+        const dateB = new Date(b[column]);
+        return order === "asc" ? dateA - dateB : dateB - dateA;
+      } else {
+        // Sort by string (action or impact)
+        const valueA = a[column].toLowerCase();
+        const valueB = b[column].toLowerCase();
+        if (valueA < valueB) return order === "asc" ? -1 : 1;
+        if (valueA > valueB) return order === "asc" ? 1 : -1;
+        return 0;
+      }
+    });
+
+    // Update the table with the sorted data
+    this.updateEcoTrackerTable(sortedActions);
+
+    // Update sorting buttons
+    this.updateSortButtons(column, order);
+  }
+
+  /**
+   * Updates the sorting buttons to reflect the current sorting state.
+   * @param {string} activeColumn - The column currently being sorted.
+   * @param {string} order - The sort order ("asc" or "desc").
+   */
+  static updateSortButtons(activeColumn, order) {
+    document.querySelectorAll(".sort-button").forEach((button) => {
+      const column = button.getAttribute("data-column");
+
+      if (column === activeColumn) {
+        button.textContent = order === "asc" ? "▲" : "▼";
+        button.style.backgroundColor = "var(--color-accent)";
+        button.style.color = "var(--color-background)";
+      } else {
+        button.textContent = "Sort";
+        button.setAttribute("data-order", "asc");
+        button.style.backgroundColor = "";
+        button.style.color = "";
+      }
+    });
   }
 
   /**
@@ -176,6 +261,19 @@ export class UIManager {
     }
   }
 }
+
+// Call this method in the appropriate place
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.location.pathname.endsWith("ecotracker.html")) {
+    const ecoActions = User.getUser()?.ecoData?.ecoActions || [];
+
+    // Default sorting by "Date Added" (createdDate) in ascending order
+    UIManager.sortEcoTrackerTable(ecoActions, "createdDate", "asc");
+
+    // Initialize sort button event listeners
+    UIManager.initializeSortButtons();
+  }
+});
 
 window.UIManager = UIManager;
 UIManager.update();

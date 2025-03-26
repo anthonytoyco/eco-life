@@ -187,6 +187,33 @@ form .error-message {
   color: var(--color-error);
   padding: 0px 0px 30px;
 }
+/* Form Buttons */
+.delete-button-td {
+  text-align: center;
+}
+.sort-button,
+.delete-button {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 0.8rem;
+  font-family: var(--font-family-inter);
+  color: var(--color-primary);
+  background-color: var(--color-background);
+  border: 2px solid var(--color-accent);
+  border-radius: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.sort-button:hover,
+.sort-button:active,
+.delete-button:hover,
+.delete-button:active {
+  background-color: var(--color-accent);
+  color: var(--color-text);
+}
+.sort-button {
+  font-size: 0.8rem;
+  padding: 5px;
+}
 
 /* Tables */
 .table-wrapper {
@@ -224,6 +251,7 @@ td {
   padding: 1rem;
   font-size: 0.8rem;
   border: 1px solid var(--color-accent);
+  word-wrap: break-word;
 }
 tr:last-child td:first-child {
   border-bottom-left-radius: 10px;
@@ -277,6 +305,16 @@ tr:last-child td:last-child {
   gap: 30px;
 }
 
+/* Contact: Address */
+section address {
+  padding: 20px;
+}
+/* Contact: Google Maps iframe */
+iframe {
+  max-width: 700px;
+  border: 1px solid var(--color-accent);
+}
+
 /* UI Buttons */
 .ui-button {
   cursor: pointer;
@@ -295,16 +333,6 @@ tr:last-child td:last-child {
 .ui-button:active {
   background-color: var(--color-accent);
   color: var(--color-text);
-}
-
-/* Contact: Address */
-section address {
-  padding: 20px;
-}
-/* Contact: Google Maps iframe */
-iframe {
-  max-width: 700px;
-  border: 1px solid var(--color-accent);
 }
 
 /* RESPONSIVE DESIGN */

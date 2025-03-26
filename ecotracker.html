@@ -72,23 +72,38 @@
     <section id="ecotracker-table">
       <h2>Your Eco-Actions</h2>
       <div class="table-wrapper">
-        <table>
+        <table id="ecotracker-table">
           <thead>
             <tr>
-              <th>Date</th>
-              <th>Action</th>
-              <th>Impact</th>
-              <th>Modify</th>
+              <th>
+                Date Added<br><br>
+                <button class="sort-button" data-column="createdDate" data-order="asc">Sort</button>
+              </th>
+              <th>
+                Date Completed<br><br>
+                <button class="sort-button" data-column="date" data-order="asc">Sort</button>
+              </th>
+              <th>
+                Action<br><br>
+                <button class="sort-button" data-column="action" data-order="asc">Sort</button>
+              </th>
+              <th>
+                Impact<br><br>
+                <button class="sort-button" data-column="impact" data-order="asc">Sort</button>
+              </th>
+              <th></th>
             </tr>
           </thead>
           <tbody id="ecotracker-table-body">
             <tr>
+              <td>2025-02-01</td>
               <td>2025-02-01</td>
               <td>Used a reusable water bottle</td>
               <td>Saved 0.5kg of plastic waste</td>
               <td>X</td>
             </tr>
             <tr>
+              <td>2025-02-02</td>
               <td>2025-02-02</td>
               <td>Took public transport</td>
               <td>Reduced CO₂ emissions by 2kg</td>
