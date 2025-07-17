@@ -16,4 +16,3 @@ Eco-Life is a sustainability-focused web application that encourages users to ad
 ## Technology Stack
 
 - **Frontend:** HTML, CSS, JavaScript
-- **Assets:** Custom icons and images
